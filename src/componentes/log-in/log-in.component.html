@@ -1,12 +1,7 @@
-<main class="form-signin w-100 m-auto">
+<main class="form-signin">
   <form (ngSubmit)="login()">
     <div class="text-center mb-4">
       <h1 class="h3 mb-3 fw-bold">Inicio de sesión</h1>
-    </div>
-
-    <!-- Mensaje de error -->
-    <div *ngIf="errorMessage" class="alert alert-danger text-center">
-      {{ errorMessage }}
     </div>
 
     <!-- Usuario -->
@@ -36,7 +31,12 @@
       >
       <label for="floatingPassword">Contraseña</label>
     </div>
-
-    <button class="btn btn-login" type="submit">Iniciar sesión</button>
+    <div class="text-center">
+      <button class=" btn-login" type="submit">Iniciar sesión</button>
+    </div>
+    
+    <p class="register-link mt-3 text-center">
+      ¿No tienes cuenta? <a href="#">Registrarse</a>
+    </p>
   </form>
 </main>
