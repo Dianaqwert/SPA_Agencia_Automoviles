@@ -1,0 +1,35 @@
+<div class="container mx-auto px-2 py-5">
+    <h1 class="text-center text-3xl font-bold mb-8">Catálogo de Autos</h1>
+    
+    <div class="grid">
+      @for (auto of autos; track auto.modelo) {
+        <div class="col-12 md:col-6 lg:col-4 p-3">
+          <div class="border-1 surface-border border-round surface-card p-4 h-full">
+            <!-- Imagen del auto -->
+            <div class="mb-3">
+              <img 
+              [src]="(auto.fuente_img && auto.fuente_img[0]) || 'https://placehold...'"              [alt]="auto.marca + ' ' + auto.modelo"
+              class="w-full border-round"
+              style="height: 200px; object-fit: cover;"
+            >
+            </div>
+            
+            <!-- Información del auto -->
+            <div class="text-lg font-bold mb-1">{{ auto.marca }} {{ auto.modelo }}</div>
+            <div class="flex justify-content-between mb-1">
+              <span class="text-sm text-gray-600">Año:</span>
+              <span>{{ auto.anio }}</span>
+            </div>
+            <div class="flex justify-content-between mb-1">
+              <span class="text-sm text-gray-600">Precio:</span>
+              <span class="font-bold">{{ formatPrice(auto.precio) }}</span>
+            </div>
+            <div class="flex justify-content-between">
+              <span class="text-sm text-gray-600">Kilometraje:</span>
+              <span>{{ auto.kilometraje.toLocaleString() }} km</span>
+            </div>
+          </div>
+        </div>
+      }
+    </div>
+  </div>

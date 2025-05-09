@@ -1,15 +1,15 @@
 import { Component } from '@angular/core';
 import { FormsModule } from '@angular/forms';
+import { CommonModule } from '@angular/common';
 
 @Component({
   selector: 'app-log-in',
-  standalone: true, // <-- Esto es clave para componentes standalone
-  imports: [FormsModule], // <-- Importar FormsModule aquí
+  standalone: true,
+  imports: [FormsModule, CommonModule],
   templateUrl: './log-in.component.html',
-
+  styleUrls: ['./log-in.component.css']
 })
 export class LogInComponent {
-  // Arreglo de administradores
   adminAccounts = [
     { username: 'admin1', password: '1234', fullName: 'Administrador Uno' },
     { username: 'admin2', password: 'abcd', fullName: 'Administrador Dos' },
@@ -21,15 +21,14 @@ export class LogInComponent {
   errorMessage: string = '';
 
   login() {
-    let validUser = this.adminAccounts.find(
+    const validUser = this.adminAccounts.find(
       user => user.username === this.username && user.password === this.password
     );
 
     if (validUser) {
-      // Lógica de éxito (redirección o mensaje)
       this.errorMessage = '';
       alert(`Bienvenido ${validUser.fullName}`);
-      // this.router.navigate(['/dashboard']); // Si tienes routing
+      // Redirección: this.router.navigate(['/dashboard']);
     } else {
       this.errorMessage = 'Credenciales incorrectas. Inténtalo de nuevo.';
       alert(this.errorMessage);

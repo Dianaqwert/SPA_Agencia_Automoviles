@@ -1,0 +1,19 @@
+/* Estilos adicionales personalizados */
+.container {
+    max-width: 1200px;
+  }
+  
+  /* Efecto hover para las tarjetas */
+  .surface-card {
+    transition: transform 0.3s, box-shadow 0.3s;
+  }
+  
+  .surface-card:hover {
+    transform: translateY(-5px);
+    box-shadow: 0 10px 20px rgba(0, 0, 0, 0.1);
+  }
+  
+  /* Estilo para el precio */
+  .font-bold {
+    color: #2563eb; /* Color azul para el precio */
+  }

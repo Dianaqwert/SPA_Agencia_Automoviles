@@ -1,35 +1,74 @@
-  body {
-    background-color: #121212; /* color-dark */
-    color: #fff;
-  }
+:root {
+  --color-dark: #050003;
+  --color-orange: #FFA739;
+  --color-yellow: #FCE07F;
+  --color-white: #FFFFFF;
+}
 
-  .form-signin {
-    max-width: 400px;
-    padding: 2rem;
-    border-radius: 10px;
-    background-color: #dbeeff; /* color-lightest-blue */
-    box-shadow: 0 0 15px rgba(0, 0, 0, 0.3);
-  }
+/* Estilos generales */
+.form-signin {
+  width: 25%;
+  margin: auto;
+  padding: 2rem;
+  background-color: var(--color-white); /* Fondo blanco */
+  border: 10px solid var(--color-orange); /* Borde naranja */
+  border-radius: 10px;
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+}
 
-  .btn-login {
-    background-color: #007bff;
-    color: white;
-    font-weight: bold;
-    padding: 0.75rem;
-    width: 100%;
-    border: none;
-    border-radius: 8px;
-  }
+/* Título */
+.form-signin h1 {
+  color: var(--color-dark); /* Texto oscuro */
+}
 
-  .btn-login:hover {
-    background-color: #0056b3;
-  }
+/* Inputs */
+.form-control {
+  background-color: var(--color-white);
+  border: 1px solid var(--color-dark);
+  color: var(--color-dark);
+}
 
-  .form-check-input:checked {
-    background-color: #007bff;
-    border-color: #007bff;
-  }
+.form-control {
+  border-color: var(--color-orange);
+  box-shadow: 0 0 0 0.25rem rgba(255, 167, 57, 0.25);
+}
 
-  .form-check-label {
-    color: #000;
-  }
+/* Labels */
+.form-floating label {
+  color: var(--color-dark);
+}
+
+/* Botón */
+.btn-login {
+  background-color: #FCE07F; /* Amarillo */
+  color: var(--color-dark); /* Texto oscuro */
+  border: none;
+  border-radius: 0 15px;
+  text-align: center;
+  padding: 15px 10px;
+  margin: 5px;
+  font-weight: bold;
+  transition: all 0.3s;
+}
+
+.btn-login:hover {
+  background-color: #f8d76e; /* Amarillo más oscuro al hover */
+  transform: translateY(-2px);
+}
+
+/* Enlace de registro */
+.register-link {
+  color: var(--color-dark);
+}
+
+.register-link a {
+  color: var(--color-orange);
+  text-decoration: none;
+  font-weight: bold;
+  transition: color 0.3s;
+}
+
+.register-link a:hover {
+  color: #e6952e; /* Naranja más oscuro al hover */
+  text-decoration: underline;
+}
