@@ -1,0 +1,127 @@
+@if (auto) {
+    <div class="container mx-auto p-4">
+      <!-- Encabezado con badges -->
+      <div class="flex justify-content-between align-items-center mb-6">
+        <div>
+          <h1 class="text-3xl font-bold">{{ auto.marca }} {{ auto.modelo }}</h1>
+          <p class="text-xl text-gray-600">{{ auto.tipo_auto }} • {{ auto.anio }}</p>
+        </div>
+        <div class="flex gap-2">
+          @if (auto.ofertas) {
+            <span class="bg-orange-500 text-white px-4 py-2 text-lg font-bold rounded">
+              ¡OFERTA ESPECIAL!
+            </span>
+          }
+          @if (auto.oportunidades) {
+            <span class="bg-green-500 text-white px-4 py-2 text-lg font-bold rounded">
+              GRAN OPORTUNIDAD
+            </span>
+          }
+        </div>
+      </div>
+    
+      <div class="grid">
+        <!-- Carrusel de imágenes -->
+        <div class="col-12 md:col-6">
+          <p-galleria 
+            [(value)]="auto.fuente_img" 
+            [responsiveOptions]="responsiveOptions" 
+            [containerStyle]="{'max-width': '100%'}"
+            [showThumbnails]="false"
+            [showIndicators]="true"
+          >
+            <ng-template pTemplate="item" let-item>
+              <img 
+                [src]="'assets/autos/' + item" 
+                [alt]="auto.marca + ' ' + auto.modelo"
+                class="w-full border-round shadow-3"
+                style="max-height: 400px; object-fit: contain;"
+              />
+            </ng-template>
+            <ng-template pTemplate="thumbnail" let-item>
+              <img 
+                [src]="'assets/autos/' + item" 
+                [alt]="auto.marca + ' ' + auto.modelo"
+                class="w-20 cursor-pointer border-round shadow-2"
+              />
+            </ng-template>
+          </p-galleria>
+        </div>
+    
+        <!-- Detalles completos del auto -->
+        <div class="col-12 md:col-6">
+          <div class="text-3xl font-bold text-primary mb-4">
+            {{ formatPrice(auto.precio) }}
+          </div>
+    
+          <!-- Ficha técnica completa -->
+          <div class="surface-100 p-4 border-round mb-4">
+            <h3 class="text-xl font-bold mb-3">Especificaciones Técnicas</h3>
+            <div class="grid">
+              <div class="col-6 mb-3">
+                <div class="text-gray-600 font-medium">Marca</div>
+                <div>{{ auto.marca }}</div>
+              </div>
+              <div class="col-6 mb-3">
+                <div class="text-gray-600 font-medium">Modelo</div>
+                <div>{{ auto.modelo }}</div>
+              </div>
+              <div class="col-6 mb-3">
+                <div class="text-gray-600 font-medium">Año</div>
+                <div>{{ auto.anio }}</div>
+              </div>
+              <div class="col-6 mb-3">
+                <div class="text-gray-600 font-medium">Tipo</div>
+                <div>{{ auto.tipo_auto }}</div>
+              </div>
+              <div class="col-6 mb-3">
+                <div class="text-gray-600 font-medium">Transmisión</div>
+                <div>{{ auto.transmision }}</div>
+              </div>
+              <div class="col-6 mb-3">
+                <div class="text-gray-600 font-medium">Kilometraje</div>
+                <div>{{ auto.kilometraje.toLocaleString() }} km</div>
+              </div>
+              <div class="col-6 mb-3">
+                <div class="text-gray-600 font-medium">Color</div>
+                <div>{{ auto.color }}</div>
+              </div>
+              <div class="col-6 mb-3">
+                <div class="text-gray-600 font-medium">Pasajeros</div>
+                <div>{{ auto.pasajeros }}</div>
+              </div>
+              <div class="col-6 mb-3">
+                <div class="text-gray-600 font-medium">En oferta</div>
+                <div>{{ auto.ofertas ? 'Sí' : 'No' }}</div>
+              </div>
+              <div class="col-6 mb-3">
+                <div class="text-gray-600 font-medium">Oportunidad</div>
+                <div>{{ auto.oportunidades ? 'Sí' : 'No' }}</div>
+              </div>
+            </div>
+          </div>
+    
+          <!-- Botones de acción -->
+          <div class="flex flex-column gap-3">
+            <button 
+              pButton 
+              label="Contactar vendedor" 
+              icon="pi pi-whatsapp" 
+              severity="success"
+            ></button>
+            <button 
+              pButton 
+              label="Solicitar prueba de manejo" 
+              icon="pi pi-car"
+            ></button>
+            <button 
+              pButton 
+              label="Financiamiento" 
+              icon="pi pi-credit-card" 
+              severity="secondary"
+            ></button>
+          </div>
+        </div>
+      </div>
+    </div>
+    }
