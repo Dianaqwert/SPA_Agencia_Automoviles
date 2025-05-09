@@ -1,0 +1,275 @@
+/* Paleta de colores */
+:root {
+    --color-dark: #050003;        /* Color oscuro */
+    --color-light-blue: #90D7FF;  /* Azul claro */
+    --color-lightest-blue: #C9F9FF; /* Azul más claro */
+    --color-orange: #FFA739;      /* Naranja */
+    --color-yellow: #FCE07F;      /* Amarillo */
+    --color-white: #FFFFFF;       /* Blanco */
+    
+    /* Nuevos colores para sombras y transiciones */
+    --color-orange-light: #FFB55F; /* Naranja más claro para hover */
+    --color-dark-transparent: rgba(5, 0, 3, 0.8); /* Para sombras */
+  }
+  
+  /* Estilos generales con animación de fondo */
+  html, body {
+    height: 100%;
+    font-family: 'Poppins', Arial, sans-serif;
+    background-color: var(--color-dark);
+    color: var(--color-white);
+    margin: 0;
+    padding: 0;
+    transition: background-color 0.5s ease;
+  }
+  
+  body {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    min-height: 100vh;
+  }
+  
+  /* Estilos del formulario con animación sutil */
+  .form-signin {
+    max-width: 350px;
+    padding: 2rem;
+    background: var(--color-lightest-blue);
+    border-radius: 12px;
+    box-shadow: 0 8px 30px rgba(0, 0, 0, 0.2), 
+                0 1px 3px rgba(0, 0, 0, 0.1),
+                inset 0 1px 0 rgba(255, 255, 255, 0.3);
+    transition: transform 0.3s ease, box-shadow 0.3s ease;
+  }
+  
+  .form-signin:hover {
+    transform: translateY(-5px);
+    box-shadow: 0 12px 40px rgba(0, 0, 0, 0.25);
+  }
+  
+  .form-signin h1 {
+    color: var(--color-dark);
+    font-weight: 700;
+    margin-bottom: 1.5rem; 
+    text-shadow: 0 1px 0 rgba(255, 255, 255, 0.2);
+    font-size: 1.8rem;
+  }
+  
+  /* Mejoras en los campos de entrada */
+  .form-floating {
+    margin-bottom: 20px;
+  }
+  
+  .form-floating input {
+    border-radius: 8px;
+    border: 2px solid transparent;
+    padding: 1.2rem 0.75rem;
+    transition: all 0.3s ease;
+    font-size: 1rem;
+    box-shadow: 0 2px 5px rgba(0, 0, 0, 0.07);
+  }
+  
+  .form-floating input:focus {
+    border-color: var(--color-light-blue);
+    box-shadow: 0 0 0 0.25rem rgba(144, 215, 255, 0.25);
+    transform: translateY(-1px);
+  }
+  
+  .form-floating label {
+    padding: 1.2rem 0.75rem;
+    color: #555;
+  }
+  
+  /* Checkbox personalizado */
+  .form-check .form-check-input {
+    background-color: var(--color-white);
+    border-color: var(--color-dark);
+    width: 1.1em;
+    height: 1.1em;
+    cursor: pointer;
+    transition: all 0.2s ease;
+    position: relative;
+  }
+  
+  .form-check .form-check-input:checked {
+    background-color: var(--color-dark);
+    border-color: var(--color-dark);
+  }
+  
+  /* Fix para asegurar que el estado checked sea visible */
+  .form-check .form-check-input:checked::after {
+    content: '';
+    position: absolute;
+    display: block;
+    left: 50%;
+    top: 50%;
+    width: 0.5em;
+    height: 0.5em;
+    background-color: var(--color-white);
+    border-radius: 50%;
+    transform: translate(-50%, -50%);
+  }
+  
+  /* Enfoque visual al checkbox */
+  .form-check .form-check-input:focus {
+    box-shadow: 0 0 0 0.2rem rgba(144, 215, 255, 0.25);
+    border-color: var(--color-light-blue);
+  }
+  
+  .form-check-label {
+    color: var(--color-dark);
+    font-weight: 500;
+    font-size: 0.95rem;
+    cursor: pointer;
+  }
+  
+  /* Botón con animación */
+  .btn-primary {
+    background: var(--color-dark);
+    border: none;
+    font-weight: 600;
+    padding: 0.8rem;
+    border-radius: 8px;
+    letter-spacing: 0.5px;
+    box-shadow: 0 4px 12px rgba(5, 0, 3, 0.3);
+    transition: all 0.3s ease;
+    text-transform: uppercase;
+    font-size: 0.95rem;
+    color: var(--color-white);
+  }
+  
+  .btn-primary:hover {
+    background: var(--color-orange);
+    box-shadow: 0 6px 15px rgba(255, 167, 57, 0.4);
+    transform: translateY(-2px);
+    color: var(--color-dark);
+  }
+  
+  .btn-primary:active {
+    transform: translateY(1px);
+    box-shadow: 0 2px 8px rgba(5, 0, 3, 0.3);
+  }
+  
+  /* Dropdown mejorado */
+  .bd-mode-toggle {
+    z-index: 100;
+  }
+  
+  .btn-bd-primary {
+    background-color: var(--color-dark);
+    color: var(--color-light-blue);
+    border: 2px solid var(--color-light-blue);
+    border-radius: 50%;
+    width: 48px;
+    height: 48px;
+    padding: 0;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.15);
+    transition: all 0.3s ease;
+  }
+  
+  .btn-bd-primary:hover {
+    transform: rotate(20deg);
+    box-shadow: 0 6px 15px rgba(0, 0, 0, 0.2);
+  }
+  
+  .dropdown-menu {
+    background-color: var(--color-dark);
+    border-radius: 10px;
+    box-shadow: 0 8px 30px rgba(0, 0, 0, 0.3);
+    border: 1px solid var(--color-light-blue);
+    padding: 0.5rem;
+    min-width: 10rem;
+    margin-top: 10px;
+    animation: fadeIn 0.3s ease;
+  }
+  
+  @keyframes fadeIn {
+    from { opacity: 0; transform: translateY(10px); }
+    to { opacity: 1; transform: translateY(0); }
+  }
+  
+  .dropdown-item {
+    color: var(--color-white);
+    padding: 10px 15px;
+    border-radius: 6px;
+    margin: 2px 0;
+    transition: all 0.2s ease;
+    font-weight: 500;
+  }
+  
+  .dropdown-item:hover {
+    background-color: var(--color-light-blue);
+    color: var(--color-dark);
+  }
+  
+  .dropdown-item.active {
+    background-color: var(--color-orange);
+    color: var(--color-white);
+  }
+  
+  /* Iconos mejorados */
+  .bi {
+    transition: all 0.3s ease;
+  }
+  
+  .theme-icon-active {
+    fill: var(--color-light-blue);
+  }
+  
+  body[data-bs-theme="dark"] .bi {
+    fill: var(--color-light-blue);
+  }
+  
+  body[data-bs-theme="light"] .bi {
+    fill: var(--color-dark);
+  }
+  
+  /* Mejoras para los íconos del tema */
+  .dropdown-item .bi {
+    width: 18px;
+    height: 18px;
+  }
+  
+  /* Estilos para el modo oscuro */
+  body[data-bs-theme="dark"] {
+    background: linear-gradient(135deg, var(--color-dark) 0%, #151015 100%);
+  }
+  
+  body[data-bs-theme="dark"] .form-signin {
+    background: var(--color-lightest-blue);
+  }
+  
+  body[data-bs-theme="dark"] .dropdown-menu {
+    background-color: var(--color-dark-transparent);
+    backdrop-filter: blur(10px);
+  }
+  
+  body[data-bs-theme="dark"] .dropdown-item {
+    color: var(--color-white);
+  }
+  
+  body[data-bs-theme="dark"] .dropdown-item:hover {
+    background-color: var(--color-light-blue);
+    color: var(--color-dark);
+  }
+  
+  /* Animación para el cambio de tema */
+  .theme-transition {
+    transition: background-color 0.5s ease, color 0.5s ease;
+  }
+  
+  /* Responsive */
+  @media (max-width: 576px) {
+    .form-signin {
+      max-width: 90%;
+      padding: 1.5rem;
+    }
+    
+    .btn-bd-primary {
+      width: 40px;
+      height: 40px;
+    }
+  }
