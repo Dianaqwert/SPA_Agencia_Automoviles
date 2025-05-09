@@ -35,7 +35,7 @@ export class AutoService {
       kilometraje: 15000,
       color: 'Blanco',
       pasajeros: 5,
-      fuente_img: ['rav4-1.webp', 'rav4-2.webp']
+      fuente_img: ['Rav4-1.webp', 'Rav4-2.webp']
     }
     // Agrega más autos según necesites
   ];

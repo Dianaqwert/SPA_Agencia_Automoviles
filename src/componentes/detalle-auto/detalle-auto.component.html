@@ -1,127 +1,117 @@
 @if (auto) {
     <div class="container mx-auto p-4">
       <!-- Encabezado con badges -->
-      <div class="flex justify-content-between align-items-center mb-6">
+      <div class="d-flex justify-content-between align-items-center mb-4">
         <div>
-          <h1 class="text-3xl font-bold">{{ auto.marca }} {{ auto.modelo }}</h1>
-          <p class="text-xl text-gray-600">{{ auto.tipo_auto }} • {{ auto.anio }}</p>
+          <h1 class="h2 fw-bold">{{ auto.marca }} {{ auto.modelo }}</h1>
+          <p class="h5 text-secondary">{{ auto.tipo_auto }} • {{ auto.anio }}</p>
         </div>
-        <div class="flex gap-2">
+        <div class="d-flex gap-2">
           @if (auto.ofertas) {
-            <span class="bg-orange-500 text-white px-4 py-2 text-lg font-bold rounded">
+            <span class="badge bg-warning text-dark p-2">
               ¡OFERTA ESPECIAL!
             </span>
           }
           @if (auto.oportunidades) {
-            <span class="bg-green-500 text-white px-4 py-2 text-lg font-bold rounded">
+            <span class="badge bg-success text-white p-2">
               GRAN OPORTUNIDAD
             </span>
           }
         </div>
       </div>
     
-      <div class="grid">
+      <div class="row">
         <!-- Carrusel de imágenes -->
-        <div class="col-12 md:col-6">
-          <p-galleria 
-            [(value)]="auto.fuente_img" 
-            [responsiveOptions]="responsiveOptions" 
-            [containerStyle]="{'max-width': '100%'}"
-            [showThumbnails]="false"
-            [showIndicators]="true"
-          >
-            <ng-template pTemplate="item" let-item>
+        <div class="col-12 col-md-6">
+          <div class="image-gallery">
+            <div class="main-image mb-3">
               <img 
-                [src]="'assets/autos/' + item" 
+                [src]="'/' + imagenPrincipal" 
                 [alt]="auto.marca + ' ' + auto.modelo"
-                class="w-full border-round shadow-3"
+                class="img-fluid rounded shadow"
                 style="max-height: 400px; object-fit: contain;"
               />
-            </ng-template>
-            <ng-template pTemplate="thumbnail" let-item>
-              <img 
-                [src]="'assets/autos/' + item" 
-                [alt]="auto.marca + ' ' + auto.modelo"
-                class="w-20 cursor-pointer border-round shadow-2"
-              />
-            </ng-template>
-          </p-galleria>
+            </div>
+            <div class="thumbnails d-flex gap-2">
+              @for (img of auto.fuente_img; track img) {
+                <img 
+                  [src]="'/' + img" 
+                  [alt]="auto.marca + ' ' + auto.modelo"
+                  class="img-thumbnail cursor-pointer"
+                  style="width: 80px; height: 80px; object-fit: cover;"
+                  (click)="cambiarImagen(img)"
+                />
+              }
+            </div>
+          </div>
         </div>
     
         <!-- Detalles completos del auto -->
-        <div class="col-12 md:col-6">
-          <div class="text-3xl font-bold text-primary mb-4">
+        <div class="col-12 col-md-6">
+          <div class="h2 fw-bold text-primary mb-4">
             {{ formatPrice(auto.precio) }}
           </div>
     
           <!-- Ficha técnica completa -->
-          <div class="surface-100 p-4 border-round mb-4">
-            <h3 class="text-xl font-bold mb-3">Especificaciones Técnicas</h3>
-            <div class="grid">
+          <div class="bg-light p-4 rounded mb-4">
+            <h3 class="h4 fw-bold mb-3">Especificaciones Técnicas</h3>
+            <div class="row">
               <div class="col-6 mb-3">
-                <div class="text-gray-600 font-medium">Marca</div>
+                <div class="text-secondary fw-medium">Marca</div>
                 <div>{{ auto.marca }}</div>
               </div>
               <div class="col-6 mb-3">
-                <div class="text-gray-600 font-medium">Modelo</div>
+                <div class="text-secondary fw-medium">Modelo</div>
                 <div>{{ auto.modelo }}</div>
               </div>
               <div class="col-6 mb-3">
-                <div class="text-gray-600 font-medium">Año</div>
+                <div class="text-secondary fw-medium">Año</div>
                 <div>{{ auto.anio }}</div>
               </div>
               <div class="col-6 mb-3">
-                <div class="text-gray-600 font-medium">Tipo</div>
+                <div class="text-secondary fw-medium">Tipo</div>
                 <div>{{ auto.tipo_auto }}</div>
               </div>
               <div class="col-6 mb-3">
-                <div class="text-gray-600 font-medium">Transmisión</div>
+                <div class="text-secondary fw-medium">Transmisión</div>
                 <div>{{ auto.transmision }}</div>
               </div>
               <div class="col-6 mb-3">
-                <div class="text-gray-600 font-medium">Kilometraje</div>
+                <div class="text-secondary fw-medium">Kilometraje</div>
                 <div>{{ auto.kilometraje.toLocaleString() }} km</div>
               </div>
               <div class="col-6 mb-3">
-                <div class="text-gray-600 font-medium">Color</div>
+                <div class="text-secondary fw-medium">Color</div>
                 <div>{{ auto.color }}</div>
               </div>
               <div class="col-6 mb-3">
-                <div class="text-gray-600 font-medium">Pasajeros</div>
+                <div class="text-secondary fw-medium">Pasajeros</div>
                 <div>{{ auto.pasajeros }}</div>
               </div>
               <div class="col-6 mb-3">
-                <div class="text-gray-600 font-medium">En oferta</div>
+                <div class="text-secondary fw-medium">En oferta</div>
                 <div>{{ auto.ofertas ? 'Sí' : 'No' }}</div>
               </div>
               <div class="col-6 mb-3">
-                <div class="text-gray-600 font-medium">Oportunidad</div>
+                <div class="text-secondary fw-medium">Oportunidad</div>
                 <div>{{ auto.oportunidades ? 'Sí' : 'No' }}</div>
               </div>
             </div>
           </div>
     
           <!-- Botones de acción -->
-          <div class="flex flex-column gap-3">
-            <button 
-              pButton 
-              label="Contactar vendedor" 
-              icon="pi pi-whatsapp" 
-              severity="success"
-            ></button>
-            <button 
-              pButton 
-              label="Solicitar prueba de manejo" 
-              icon="pi pi-car"
-            ></button>
-            <button 
-              pButton 
-              label="Financiamiento" 
-              icon="pi pi-credit-card" 
-              severity="secondary"
-            ></button>
+          <div class="d-flex flex-column gap-3">
+            <button class="btn btn-success">
+              <i class="bi bi-whatsapp me-2"></i>Contactar vendedor
+            </button>
+            <button class="btn btn-primary">
+              <i class="bi bi-car-front me-2"></i>Solicitar prueba de manejo
+            </button>
+            <button class="btn btn-secondary">
+              <i class="bi bi-credit-card me-2"></i>Financiamiento
+            </button>
           </div>
         </div>
       </div>
     </div>
-    }
+}

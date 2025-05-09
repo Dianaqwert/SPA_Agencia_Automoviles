@@ -1,12 +1,15 @@
 import { Component } from '@angular/core';
-import { AutoService } from '../../services/auto.service';
+import { CommonModule } from '@angular/common';
 import { Router } from '@angular/router';
+import { AutoService } from '../../services/auto.service';
 import { Auto } from '../../services/auto';
 
 @Component({
   selector: 'app-catalogo',
   standalone: true,
-  templateUrl: './catalogo.component.html'
+  imports: [CommonModule],
+  templateUrl: './catalogo.component.html',
+  styleUrls: ['./catalogo.component.css']
 })
 export class CatalogoComponent {
   autos: Auto[] = [];
