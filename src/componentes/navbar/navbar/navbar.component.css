@@ -1,0 +1,91 @@
+div{
+    font-family: "DM Sans", sans-serif;
+    font-size: 1.5rem;
+}
+
+.brand-text .title {
+    font-style: italic;
+    font-size: 1.5rem;
+    color: #050003;
+}
+  
+.brand-text .subtitle {
+    font-size: 0.9rem;
+    color: #FFA739;
+    margin-top: -4px; /* opcional, para acercarlo más al título */
+}
+  
+
+.custom-navbar {
+    background-color: #FFFFFF;
+    color: #050003;
+}
+
+.navbar-toggler{
+    color: #050003;
+}
+
+/* color de las líneas del botón (hamburguesa) */
+.navbar-toggler-icon {
+    background-image: url("data:image/svg+xml;charset=utf8,%3Csvg viewBox='0 0 30 30' xmlns='http://www.w3.org/2000/svg'%3E%3Cpath stroke='%23FFA739' stroke-width='2' stroke-linecap='round' stroke-miterlimit='10' d='M4 7h22M4 15h22M4 23h22'/%3E%3C/svg%3E");
+}
+  
+/* estilo base */
+.navbar-brand {
+    color: #050003;
+    text-decoration: none;
+    transition: color 0.3s ease;
+}
+  
+/* al pasar el mouse */
+.navbar-brand:hover {
+    color: #FFA739; /* Un tono diferente, como rosa brillante */
+}
+  
+
+/* color por defecto de los enlaces */
+.navbar-nav .nav-link {
+    color: #050003;
+    transition: color 0.3s ease;
+}
+  
+/* al pasar el mouse */
+.navbar-nav .nav-link:hover {
+    color: #FFA739;  /* Rosa más brillante o diferente */
+}
+  
+/* al hacer clic o enfocar */
+.navbar-nav .nav-link:focus,
+.navbar-nav .nav-link:active {
+    color: #FFA739; /* Otro tono si lo deseas */
+}
+
+nav{
+    font-family: "Montserrat", sans-serif;
+}
+
+a{
+    cursor: pointer;
+}
+
+.btn-orange {
+    background-color: #FFA739;
+    color: #050003;
+    border: none;
+    padding: 0.5rem 1rem;
+    border-radius: 8px;
+    transition: background-color 0.3s ease, color 0.3s ease;
+    font-weight: 500;
+    text-decoration: none; /* para quitar subrayado si lo hubiera */
+    font-family: "DM Sans", sans-serif;
+    font-size: 1.5rem;
+}
+
+.btn-orange:hover,
+.btn-orange:focus,
+.btn-orange:active {
+    background-color: #1d1c1c; /* tono más oscuro */
+    color: #FFFFFF;
+}
+
+  

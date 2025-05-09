@@ -6,7 +6,7 @@ import { FormsModule } from '@angular/forms';
   standalone: true, // <-- Esto es clave para componentes standalone
   imports: [FormsModule], // <-- Importar FormsModule aquí
   templateUrl: './log-in.component.html',
-  styleUrls: ['./log-in.component.css']
+
 })
 export class LogInComponent {
   // Arreglo de administradores
