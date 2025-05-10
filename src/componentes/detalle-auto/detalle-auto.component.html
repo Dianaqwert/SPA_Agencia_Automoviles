@@ -1,0 +1,117 @@
+@if (auto) {
+    <div class="container mx-auto p-4">
+      <!-- Encabezado con badges -->
+      <div class="d-flex justify-content-between align-items-center mb-4">
+        <div>
+          <h1 class="h2 fw-bold">{{ auto.marca }} {{ auto.modelo }}</h1>
+          <p class="h5 text-secondary">{{ auto.tipo_auto }} • {{ auto.anio }}</p>
+        </div>
+        <div class="d-flex gap-2">
+          @if (auto.ofertas) {
+            <span class="badge bg-warning text-dark p-2">
+              ¡OFERTA ESPECIAL!
+            </span>
+          }
+          @if (auto.oportunidades) {
+            <span class="badge bg-success text-white p-2">
+              GRAN OPORTUNIDAD
+            </span>
+          }
+        </div>
+      </div>
+    
+      <div class="row">
+        <!-- Carrusel de imágenes -->
+        <div class="col-12 col-md-6">
+          <div class="image-gallery">
+            <div class="main-image mb-3">
+              <img 
+                [src]="'/' + imagenPrincipal" 
+                [alt]="auto.marca + ' ' + auto.modelo"
+                class="img-fluid rounded shadow"
+                style="max-height: 400px; object-fit: contain;"
+              />
+            </div>
+            <div class="thumbnails d-flex gap-2">
+              @for (img of auto.fuente_img; track img) {
+                <img 
+                  [src]="'/' + img" 
+                  [alt]="auto.marca + ' ' + auto.modelo"
+                  class="img-thumbnail cursor-pointer"
+                  style="width: 80px; height: 80px; object-fit: cover;"
+                  (click)="cambiarImagen(img)"
+                />
+              }
+            </div>
+          </div>
+        </div>
+    
+        <!-- Detalles completos del auto -->
+        <div class="col-12 col-md-6">
+          <div class="h2 fw-bold text-primary mb-4">
+            {{ formatPrice(auto.precio) }}
+          </div>
+    
+          <!-- Ficha técnica completa -->
+          <div class="bg-light p-4 rounded mb-4">
+            <h3 class="h4 fw-bold mb-3">Especificaciones Técnicas</h3>
+            <div class="row">
+              <div class="col-6 mb-3">
+                <div class="text-secondary fw-medium">Marca</div>
+                <div>{{ auto.marca }}</div>
+              </div>
+              <div class="col-6 mb-3">
+                <div class="text-secondary fw-medium">Modelo</div>
+                <div>{{ auto.modelo }}</div>
+              </div>
+              <div class="col-6 mb-3">
+                <div class="text-secondary fw-medium">Año</div>
+                <div>{{ auto.anio }}</div>
+              </div>
+              <div class="col-6 mb-3">
+                <div class="text-secondary fw-medium">Tipo</div>
+                <div>{{ auto.tipo_auto }}</div>
+              </div>
+              <div class="col-6 mb-3">
+                <div class="text-secondary fw-medium">Transmisión</div>
+                <div>{{ auto.transmision }}</div>
+              </div>
+              <div class="col-6 mb-3">
+                <div class="text-secondary fw-medium">Kilometraje</div>
+                <div>{{ auto.kilometraje.toLocaleString() }} km</div>
+              </div>
+              <div class="col-6 mb-3">
+                <div class="text-secondary fw-medium">Color</div>
+                <div>{{ auto.color }}</div>
+              </div>
+              <div class="col-6 mb-3">
+                <div class="text-secondary fw-medium">Pasajeros</div>
+                <div>{{ auto.pasajeros }}</div>
+              </div>
+              <div class="col-6 mb-3">
+                <div class="text-secondary fw-medium">En oferta</div>
+                <div>{{ auto.ofertas ? 'Sí' : 'No' }}</div>
+              </div>
+              <div class="col-6 mb-3">
+                <div class="text-secondary fw-medium">Oportunidad</div>
+                <div>{{ auto.oportunidades ? 'Sí' : 'No' }}</div>
+              </div>
+            </div>
+          </div>
+    
+          <!-- Botones de acción -->
+          <div class="d-flex flex-column gap-3">
+            <button class="btn btn-success">
+              <i class="bi bi-whatsapp me-2"></i>Contactar vendedor
+            </button>
+            <button class="btn btn-primary">
+              <i class="bi bi-car-front me-2"></i>Solicitar prueba de manejo
+            </button>
+            <button class="btn btn-secondary">
+              <i class="bi bi-credit-card me-2"></i>Financiamiento
+            </button>
+          </div>
+        </div>
+      </div>
+    </div>
+}
