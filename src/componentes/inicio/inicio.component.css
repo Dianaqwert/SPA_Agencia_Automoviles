@@ -1,0 +1,10 @@
+.btn {
+    transition: background-color 0.3s ease, color 0.3s ease;
+    background-color: #040404; /* Color inicial */
+    color: #FFA739;
+}
+
+.btn:hover {
+    background-color: #FFA739; /* Nuevo color de fondo al hacer hover */
+    color: black; /* Cambia el color del texto si lo deseas */
+}

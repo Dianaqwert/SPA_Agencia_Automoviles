@@ -1,11 +1,11 @@
 div{
     font-family: "DM Sans", sans-serif;
-    font-size: 1.5rem;
+    font-size: 1rem;
 }
 
 .brand-text .title {
     font-style: italic;
-    font-size: 1.5rem;
+    font-size: 1rem;
     color: #050003;
 }
   
@@ -78,7 +78,7 @@ a{
     font-weight: 500;
     text-decoration: none; /* para quitar subrayado si lo hubiera */
     font-family: "DM Sans", sans-serif;
-    font-size: 1.5rem;
+    font-size: 1rem;
 }
 
 .btn-orange:hover,
