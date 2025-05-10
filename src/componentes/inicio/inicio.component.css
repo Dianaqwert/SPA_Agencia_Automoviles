@@ -1,10 +1,176 @@
-.btn {
-    transition: background-color 0.3s ease, color 0.3s ease;
-    background-color: #040404; /* Color inicial */
-    color: #FFA739;
+
+
+/*______________________CAROUSEL_____________________________*/
+.carousel{
+    padding-top:20px;
+    font-family: "DM Sans", sans-serif;
+    padding-bottom: 50px;
+}
+
+.carousel-container {
+  margin: auto;
+}
+
+.carousel-inner img {
+  object-fit: cover;
 }
 
 .btn:hover {
     background-color: #FFA739; /* Nuevo color de fondo al hacer hover */
-    color: black; /* Cambia el color del texto si lo deseas */
+    color: #050003; /* Cambia el color del texto si lo deseas */
+}
+
+.carousel-caption h5{
+    font-size: 2rem;
+    color:#FFFFFF;
+}
+
+.carousel-caption p{
+    font-size: 1.5rem;
+}
+
+.carousel-caption p strong{
+    color:#FCE07F;
+}
+
+/*______Grid areas___________*/
+
+.contenedor{
+   
+    padding-top: 60px;
+    margin: auto;
+    padding: 20px;
+    font-family: "DM Sans", sans-serif;
+    padding-bottom: 100px;
+
+    display: grid;
+    grid-gap: 20px;
+
+    grid-template-columns: repeat(3,1fr);
+    grid-template-rows: repeat(4,auto);
+
+    /*CON AREAS*/
+    grid-template-areas: "header header header"
+                        "contenido contenido sidebar"
+                        "widget-1 widget-2 sidebar"
+                        "widget-3 widget-4 sidebar";
+
+}
+
+ .contenedor > div,
+ .contenedor .header,
+ .contenedor .contenido,
+ .contenedor .sidebar,
+ .contenedor .footer{
+    padding: 20px;
+}
+
+.contenedor .header{
+    background:#050003;
+    color:#FFFFFF;
+    grid-area: header;
+    border-radius: 10px;
+}
+
+
+
+.contenedor .contenido{
+    grid-area: contenido;
+}
+
+
+
+.contenedor .sidebar {
+    grid-area: sidebar;
+     background: linear-gradient(to bottom, #FFA739, #000000);;
+    border-radius: 10px;
+    text-align: center;
+    min-height: 100px;
+
+    display: flexbox;
+    flex-direction: column; /* vertical por defecto */
+}
+
+
+/*con areas*/
+.contenedor .widget-1{
+    grid-area: widget-1;
+}
+
+.contenedor .widget-2{
+    grid-area: widget-2;
+}
+
+.contenedor .widget-3{
+    grid-area: widget-3;
+}
+
+.contenedor .widget-4{
+    grid-area: widget-4;
+}
+
+.contenedor .widget-1,
+.contenedor .widget-2,
+.contenedor .widget-3,
+.contenedor .widget-4 {
+    background-color: #90D7FF;
+    color: #050003;
+    border-radius: 10px;
+    text-align: center;
+
+    display: grid;
+    align-items: center;
+    justify-content: center;
+
+    height: 100%; /* toma toda la altura disponible */
+    min-height: 150px; /* puedes ajustar este valor */
+}
+
+.contenedor .widget-1 h3,
+.contenedor .widget-2 h3,
+.contenedor .widget-3 h3,
+.contenedor .widget-4 h3{
+    color: #C9F9FF;
+}
+
+
+/*MC con areas*/
+@media screen and (max-width: 768px) {
+    .contenedor {
+        grid-template-areas: 
+            "header header header"
+            "contenido contenido contenido"
+            "sidebar sidebar sidebar"
+            "widget-1 widget-2 widget-2"
+            "widget-3 widget-4 widget-4";
+    }
+
+    .contenedor .sidebar {
+        flex-direction: row; /* horizontal en pantallas pequeñas */
+        flex-wrap: wrap; /* permite que bajen si no caben */
+        justify-content: center;
+    }
+}
+
+
+
+.btn-1{
+    background-color: #FCE07F;
+    color: #050003; /* Cambia el color del texto si lo deseas */
+
+}
+
+.btn-1:hover {
+    background-color: #eac53f; /* Nuevo color de fondo al hacer hover */
+    color:#FFFFFF;
+}
+
+
+.footer{
+    font-family: "DM Sans", sans-serif;
+    text-align: center;
+    padding: 20px;
+    padding-top: 50px;
+    padding-bottom: 0px;
+    
 }
