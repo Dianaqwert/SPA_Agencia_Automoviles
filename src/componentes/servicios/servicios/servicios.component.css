@@ -1,0 +1,27 @@
+div{
+    font-family: "DM Sans", sans-serif;
+}
+
+.c1{
+    background-repeat:no-repeat;
+    background-size: cover;
+    color: #FFA739;
+}
+
+/*iconos*/
+.bi-tools{
+    transition: 0s;
+}
+
+.bi-tools:hover{
+    color:#FFA739;
+}
+
+.icono {
+  font-size: 8rem; /* tamaño base */
+  transition: transform 0.1s ease;
+}
+
+.icono:hover {
+  transform: scale(0.3); /* agranda el ícono al pasar el cursor */
+}
