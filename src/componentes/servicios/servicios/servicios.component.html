@@ -100,261 +100,353 @@
 <div class="row g-5">
   
     <div class="col-md-7 col-lg-8">
-        <h4 class="mb-3"> Dirección de facturación</h4>
+        <h4 class="mb-3">Responsable que solicita el servicio</h4>
         
         <form [formGroup]="form" (ngSubmit)="onSubmit()">
-        <div class="row g-3">
-            <div class="col-sm-6">
-                <label for="firstName" class="form-label">Nombre</label>
-                <input type="text" class="form-control" id="firstName" required formControlName="nombre">
-                <!-- Validaciones -->
-                @if(form.get('nombre')?.invalid && form.get('nombre')?.touched){
-                    @if(form.get('nombre')?.hasError('required')){
-                        <div class="invalid-feedback">
-                            Introduzca su dirección de envío.
+            <div class="row g-3">
+                <!--NOMMBRE-->
+                <div class="col-sm-6">
+                    <label for="firstName" class="form-label">Nombre</label>
+                    <input type="text" class="form-control" id="firstName" required formControlName="nombre">
+                    <!-- Validaciones -->
+                    @if(form.get('nombre')?.invalid && form.get('nombre')?.touched){
+                        @if(form.get('nombre')?.hasError('required')){
+                            <div class="invalid-feedback">
+                                Introduzca su dirección de envío.
+                            </div>
+                        }
+
+                        <!--ngClass-->
+                        <div  class="invalid-feedback"
+                            [ngClass]="{
+                                'd-block': form.get('nombre')?.hasError('minlength') && form.get('nombre')?.touched,
+                                'd-none': !(form.get('nombre')?.hasError('minlength') && form.get('nombre')?.touched)
+                            }">
+                            La dirección debe tener al menos 5 caracteres.
+                        </div>
+
+                        <div class="invalid-feedback"
+                            [ngClass]="{
+                                'd-block': form.get('nombre')?.hasError('maxlength') && form.get('nombre')?.touched,
+                                'd-none': !(form.get('nombre')?.hasError('maxlength') && form.get('nombre')?.touched)
+                            }">
+                            La dirección no debe tener más de 30 caracteres.
+                        </div>
+
+                        <!--validacion personalizada-->
+                        @if(form.get('nombre')?.hasError('caracteresInvalidos')){
+                            <div class="invalid-feedback d-block">
+                                La dirección contiene caracteres inválidos: 
+                                {{ form.get('nombre')?.getError('caracteresInvalidos') }}
+                            </div>
+                        }
+                    } @else if(form.get('nombre')?.valid && form.get('nombre')?.touched){
+                        <div class="valid-feedback">
+                            Dirección válida
                         </div>
                     }
 
-                    <!--ngClass-->
-                    <div  class="invalid-feedback"
-                        [ngClass]="{
-                            'd-block': form.get('nombre')?.hasError('minlength') && form.get('nombre')?.touched,
-                            'd-none': !(form.get('nombre')?.hasError('minlength') && form.get('nombre')?.touched)
-                        }">
-                        La dirección debe tener al menos 10 caracteres.
-                    </div>
+                </div>
 
-                    <div class="invalid-feedback"
-                        [ngClass]="{
-                            'd-block': form.get('nombre')?.hasError('maxlength') && form.get('nombre')?.touched,
-                            'd-none': !(form.get('nombre')?.hasError('maxlength') && form.get('nombre')?.touched)
-                        }">
-                        La dirección no debe tener más de 50 caracteres.
-                    </div>
+                <!--Apellidos-->
+                <div class="col-sm-6">
+                    <label for="lastName" class="form-label">Apellidos</label>
+                    <input type="text" class="form-control" id="lastName" formControlName="apellidos">
+                    <!-- Validaciones -->
+                    @if(form.get('apellidos')?.invalid && form.get('apellidos')?.touched){
+                        @if(form.get('nombre')?.hasError('required')){
+                            <div class="invalid-feedback">
+                                Introduzca su dirección de envío.
+                            </div>
+                        }
 
-                    <!--validacion personalizada-->
-                    @if(form.get('nombre')?.hasError('caracteresInvalidos')){
-                        <div class="invalid-feedback d-block">
-                            La dirección contiene caracteres inválidos: 
-                            {{ form.get('nombre')?.getError('caracteresInvalidos') }}
+                        <!--ngClass-->
+                        <div  class="invalid-feedback"
+                            [ngClass]="{
+                                'd-block': form.get('apellidos')?.hasError('minlength') && form.get('apellidos')?.touched,
+                                'd-none': !(form.get('apellidos')?.hasError('minlength') && form.get('apellidos')?.touched)
+                            }">
+                            La dirección debe tener al menos 5 caracteres.
+                        </div>
+
+                        <div class="invalid-feedback"
+                            [ngClass]="{
+                                'd-block': form.get('apellidos')?.hasError('maxlength') && form.get('apellidos')?.touched,
+                                'd-none': !(form.get('apellidos')?.hasError('maxlength') && form.get('apellidos')?.touched)
+                            }">
+                            La dirección no debe tener más de 30 caracteres.
+                        </div>
+
+                        <!--validacion personalizada-->
+                        @if(form.get('apellidos')?.hasError('caracteresInvalidos')){
+                            <div class="invalid-feedback d-block">
+                                La dirección contiene caracteres inválidos: 
+                                {{ form.get('apellidos')?.getError('caracteresInvalidos') }}
+                            </div>
+                        }
+                    } @else if(form.get('apellidos')?.valid && form.get('apellidos')?.touched){
+                        <div class="valid-feedback">
+                            Dirección válida
                         </div>
                     }
-                } @else if(form.get('nombre')?.valid && form.get('nombre')?.touched){
-                    <div class="valid-feedback">
-                        Dirección válida
+                </div>
+
+                <!--User-->
+                <div class="col-12">
+                    <label for="username" class="form-label">Nombre de usuario</label>
+                    <div class="input-group has-validation">
+                        <span class="input-group-text"></span>
+                        <input type="text" class="form-control" id="username" placeholder="Nombre de usuario no debe de tener caracteres como */?|+- , unicamente números y giones bajos y medios" formControlName="username">
+                        @if(form.get('username')?.invalid && form.get('username')?.touched){
+                            @if(form.get('username')?.hasError('required')){
+                                <div class="invalid-feedback">
+                                    Introduzca su nombre de usuario.
+                                </div>
+                            }
+
+                            <!--ngClass-->
+                            <div  class="invalid-feedback"
+                                [ngClass]="{
+                                    'd-block': form.get('username')?.hasError('minlength') && form.get('username')?.touched,
+                                    'd-none': !(form.get('username')?.hasError('minlength') && form.get('username')?.touched)
+                                }">
+                                La dirección debe tener al menos 5 caracteres.
+                            </div>
+
+                            <div class="invalid-feedback"
+                                [ngClass]="{
+                                    'd-block': form.get('username')?.hasError('maxlength') && form.get('username')?.touched,
+                                    'd-none': !(form.get('username')?.hasError('maxlength') && form.get('username')?.touched)
+                                }">
+                                La dirección no debe tener más de 30 caracteres.
+                            </div>
+
+                            <!--validacion personalizada-->
+                            @if(form.get('username')?.hasError('caracteresInvalidos')){
+                                <div class="invalid-feedback d-block">
+                                    La dirección contiene caracteres inválidos: 
+                                    {{ form.get('username')?.getError('caracteresInvalidos') }}
+                                </div>
+                            }
+                        } @else if(form.get('username')?.valid && form.get('username')?.touched){
+                            <div class="valid-feedback">
+                                Dirección válida
+                            </div>
+                        }
+
                     </div>
-                }
-
-            </div>
-
-            <div class="col-sm-6">
-                <label for="lastName" class="form-label">Apellidos</label>
-                <input type="text" class="form-control" id="lastName" required formControlName="apellidos">
-                <div class="invalid-feedback">
-                    Ingresa apellidos validos.
                 </div>
-            </div>
 
-            <div class="col-12">
-                <label for="username" class="form-label">Nombre de usuario</label>
-                <div class="input-group has-validation">
-                    <span class="input-group-text"></span>
-                    <input type="text" class="form-control" id="username" placeholder="Username" required formControlName="username">
-                    <div class="invalid-feedback">
-                        Tu nombre de usuario es requierido.
-                    </div>
-                </div>
-            </div>
+                <!--mail-->
+                <div class="col-12">
+                    <label for="email" class="form-label">
+                        Email <span class="text-body-secondary">(Obligatorio)</span>
+                    </label>
+                    <input type="email" class="form-control" id="email" placeholder="you@example.com" formControlName="email">
+                    @if(form.get('email')?.invalid && form.get('email')?.touched || form.get('email')?.dirty){
+                        @if(form.get('email')?.hasError('required')){
+                            <div class="invalid-feedback">
+                                Introduzca su email de forma correcta , es obligatorio.
+                            </div>
+                        }
 
-            <div class="col-12">
-                <label for="email" class="form-label">
-                    Email <span class="text-body-secondary">(Obligatorio)</span>
-                </label>
-                <input type="email" class="form-control" id="email" placeholder="you@example.com" formControlName="email">
-            
-                <div class="invalid-feedback">
-                    Introduzca una dirección de correo electrónico válida para recibir actualizaciones de envío.
-                </div>
-            </div>
+                        @if(form.get('email')?.hasError('email')){
+                            <div class="invalid-feedback d-block">
+                                <p>El formato del email no es válido.</p>
+                            </div>
+                        }
 
-            <!--Dirección-->
-            <div class="col-12">
-                <label for="address" class="form-label">Ubicación</label>
-                <input 
-                    type="text" 
-                    class="form-control" 
-                    id="address" 
-                    placeholder="1234 Main St" 
-                    required 
-                    formControlName="direccion">
-                <!-- Validaciones -->
-                @if(form.get('direccion')?.invalid && form.get('direccion')?.touched){
-                    @if(form.get('direccion')?.hasError('required')){
-                        <div class="invalid-feedback">
-                            Introduzca su dirección de envío.
+                    }@else if(form.get('email')?.valid && form.get('email')?.touched){
+                        <div class="valid-feedback">
+                            E-mail válido
                         </div>
                     }
+                    
+                </div>
 
-                    <!--ngClass-->
-                    <div  class="invalid-feedback"
-                        [ngClass]="{
-                            'd-block': form.get('direccion')?.hasError('minlength') && form.get('direccion')?.touched,
-                            'd-none': !(form.get('direccion')?.hasError('minlength') && form.get('direccion')?.touched)
+                <!--Dirección-->
+                <div class="col-12">
+                    <label for="address" class="form-label">Ubicación</label>
+                    <input 
+                        type="text" 
+                        class="form-control" 
+                        id="address" 
+                        placeholder="1234 Main St" 
+                        required 
+                        formControlName="direccion">
+                    <!-- Validaciones -->
+                    @if(form.get('direccion')?.invalid && form.get('direccion')?.touched){
+                        @if(form.get('direccion')?.hasError('required')){
+                            <div class="invalid-feedback">
+                                Introduzca su dirección de envío.
+                            </div>
+                        }
+
+                        <!--ngClass-->
+                        <div  class="invalid-feedback"
+                            [ngClass]="{
+                                'd-block': form.get('direccion')?.hasError('minlength') && form.get('direccion')?.touched,
+                                'd-none': !(form.get('direccion')?.hasError('minlength') && form.get('direccion')?.touched)
                         }">
-                        La dirección debe tener al menos 10 caracteres.
-                    </div>
+                            La dirección debe tener al menos 10 caracteres.
+                        </div>
 
-                    <div class="invalid-feedback"
-                        [ngClass]="{
+                        <div class="invalid-feedback"
+                            [ngClass]="{
                             'd-block': form.get('direccion')?.hasError('maxlength') && form.get('direccion')?.touched,
                             'd-none': !(form.get('direccion')?.hasError('maxlength') && form.get('direccion')?.touched)
-                        }">
-                        La dirección no debe tener más de 50 caracteres.
-                    </div>
+                            }">
+                            La dirección no debe tener más de 50 caracteres.
+                        </div>
 
-                    <!--validacion personalizada-->
-                    @if(form.get('direccion')?.hasError('direccion')){
-                        <div class="invalid-feedback d-block">
-                            La dirección contiene caracteres inválidos: 
-                            {{ form.get('direccion')?.getError('direccion') }}
+                        <!--validacion personalizada-->
+                        @if(form.get('direccion')?.hasError('direccion')){
+                            <div class="invalid-feedback d-block">
+                                La dirección contiene caracteres inválidos: 
+                                {{ form.get('direccion')?.getError('direccion') }}
+                            </div>
+                        }
+                    } @else if(form.get('direccion')?.valid && form.get('direccion')?.touched){
+                        <div class="valid-feedback">
+                            Dirección válida
                         </div>
                     }
-                } @else if(form.get('direccion')?.valid && form.get('direccion')?.touched){
-                    <div class="valid-feedback">
-                        Dirección válida
+                </div>
+
+
+                <!--Pais-->
+                <div class="col-md-5">
+                    <label for="country" class="form-label">País</label>
+                    <select class="form-select" id="country" formControlName="pais">
+                        <option value="">Elige...</option>
+                        @for(paises of paises; track paises){
+                            <option [value]="paises">{{paises}}</option>
+                        }
+                    </select>
+                    @if(form.get('pais')?.invalid && form.get('pais')?.touched ||formSubmitted){
+                        <div class="invalid-feedback">
+                            Porfavor selecciona un pais
+                        </div>
+                    }
+                </div>
+
+                <!--estado-->
+                <div class="col-md-4">
+                    <label for="state" class="form-label">Estado</label>
+                    <select class="form-select" id="state"  formControlName="estado">
+                        <option value="">Elige...</option>
+                        @for(estados of estados;track estados){
+                            <option [value]="estados">{{estados}}</option>
+                        }
+                    </select>
+                    @if(form.get('estado')?.invalid && form.get('estado')?.touched || formSubmitted){
+                        @if(form.get('estado')?.hasError('required')) {
+                        <div class="invalid-feedback">
+                            Seleccione un estado válido.
+                        </div>
+                        }
+                    }
+
+                    @if(form.get('estado')?.valid && form.get('estado')?.touched){
+                        <div class="valid-feedback">
+                        Estado válido.
+                        </div>
+                    }
+                </div>
+
+                <!--CP-->
+                <div class="col-md-3">
+                    <label for="zip" class="form-label">CP</label>
+                    <input type="text" class="form-control" id="zip" formControlName="cp">
+                    @if (form.get('cp')?.invalid && form.get('cp')?.touched) {
+                        @if (form.get('cp')?.hasError('required')) {
+                            <div class="invalid-feedback">
+                                Introduzca su código postal.
+                            </div>
+                        }
+                        
+                        @if (form.get('cp')?.hasError('caracteresInvalidos')) {
+                            <div class="invalid-feedback">
+                                El código postal debe contener exactamente 5 números.
+                            </div>
+                        }
+
+                         <!--ngClass-->
+                        <div  class="invalid-feedback"
+                            [ngClass]="{
+                                'd-block': form.get('cp')?.hasError('minlength') && form.get('cp')?.touched,
+                                'd-none': !(form.get('cp')?.hasError('minlength') && form.get('cp')?.touched)
+                            }">
+                            La dirección debe tener al menos 5 numeros.
+                        </div>
+
+                        <div class="invalid-feedback"
+                            [ngClass]="{
+                                'd-block': form.get('cp')?.hasError('maxlength') && form.get('cp')?.touched,
+                                'd-none': !(form.get('cp')?.hasError('maxlength') && form.get('cp')?.touched)
+                            }">
+                            La dirección no debe tener más de 5 numeros.
+                        </div>
+
+                    } @else {
+                        <div class="valid-feedback">
+                            CP correcto.
+                        </div>
+                    }
+                </div>
+
+            </div>
+
+            <hr class="my-4">
+
+            <!--fecha-->
+            <h4 class="mb-3">Cita</h4>
+            <div class="mb-3">
+                <label for="fecha-cita" class="form-label">Selecciona la fecha</label>
+                <input type="date" class="form-control" id="fecha-cita" name="fecha-cita" formControlName="fechaCita" 
+                [min]="fechaMin">
+
+                @if(form.get('fechaCita')?.hasError('requiered')){
+                    <div>
+                        Selecciona una fecha
+                    </div>
+                }
+
+                @if(form.get('fechaCita')?.hasError('fechaValida')){
+                    <div>
+                        La fecha no puede ser anterior al dia actual
                     </div>
                 }
             </div>
 
-
-            <!--Pais-->
-            <div class="col-md-5">
-                <label for="country" class="form-label">País</label>
-                <select class="form-select" id="country" required formControlName="pais">
-                    <option value="">Elige...</option>
-                    @for(paises of paises; track paises){
-                        <option [value]="paises">{{paises}}</option>
-                    }
-                </select>
-                
-                <div class="invalid-feedback">
-                    Seleccione un país válido.
-                </div>
-            </div>
-
-            <div class="col-md-4">
-                <label for="state" class="form-label">Estado</label>
-                <select class="form-select" id="state" required>
-                    <option value="">Elige...</option>
-                    <option>Aguascalientes</option>
-                    <option>Nuevo León </option>
-                    <option>Sinaloa</option>
-                    <option>CDMX</option>
-                </select>
-                <div class="invalid-feedback">
-                    Seleccione un estado válido.
-                </div>
-            </div>
-
-            <div class="col-md-3">
-                <label for="zip" class="form-label">CP</label>
-                <input type="text" class="form-control" id="zip" required>
-                <div class="invalid-feedback">
-                    CP es requerido
-                </div>
-            </div>
-        </div>
-
-        <hr class="my-4">
-
-        <div class="form-check my-4">
-            <input type="checkbox" class="form-check-input" id="same-address">
-            <label class="form-check-label" for="same-address">
-                La dirección de envío es la misma que la de facturación
-            </label>
-        </div>
-
-        <div class="form-check">
-            <input type="checkbox" class="form-check-input" id="save-info">
-            <label class="form-check-label" for="save-info">
-                Guarde esta información para la próxima vez
-            </label>
-        </div>
-
-        <hr class="my-4">
-
-        <!--fecha-->
-     
-        <h4 class="mb-3">Cita</h4>
-        <div class="mb-3">
-            <label for="fecha-cita" class="form-label">Selecciona la fecha</label>
-            <input type="date" class="form-control" id="fecha-cita" name="fecha-cita" required formControlName="fechaCita">
-            <div class="invalid-feedback">
-                Por favor selecciona una fecha válida para tu cita.
-            </div>
-        </div>
-
-
-        <!--pago-->
-        <h4 class="mb-3">Pago</h4>
-
-        <div class="my-3">
+            <!--radio buton-->
             <div class="form-check">
-                <input id="credit" name="paymentMethod" type="radio" class="form-check-input" checked required>
-                <label class="form-check-label" for="credit">Tarjeta de crédito</label>
-            </div>
-            <div class="form-check">
-                <input id="debit" name="paymentMethod" type="radio" class="form-check-input" required>
-                <label class="form-check-label" for="debit">Tarjeta de debito</label>
-            </div>
-            <div class="form-check">
-                <input id="paypal" name="paymentMethod" type="radio" class="form-check-input" required>
-                <label class="form-check-label" for="paypal">PayPal</label>
-            </div>
-        </div>
+                <input type="checkbox" class="form-check-input" id="save-info" formControlName="terminos">
+                <label class="form-check-label" for="save-info">
+                    Acepto que la empresa guarde mis datos.
+                </label>
 
-        <div class="row gy-3">
-            <div class="col-md-6">
-                <label for="cc-name" class="form-label">Nombre de la tarjeta</label>
-                <input type="text" class="form-control" id="cc-name" required>
-                <small class="text-body-secondary">Nombre completo de la tarjeta</small>
-                <div class="invalid-feedback">
-                    EL nombre de la tarjeta es necesario
-                </div>
+                @if(form.get('terminos')?.invalid && form.get('terminos')?.touched||formSubmitted){
+                    <div class="invalid-feedback">
+                        Debes aceptar los términos para acontinuar 
+                    </div>
+                }
             </div>
 
-            <div class="col-md-6">
-                <label for="cc-number" class="form-label">Numero de la tarjeta</label>
-                <input type="text" class="form-control" id="cc-number" required>
-                <div class="invalid-feedback">
-                    El numero de la tarjeta es requerido
-                </div>
-            </div>
+            <hr class="my-4">
 
-            <div class="col-md-3">
-                <label for="cc-expiration" class="form-label">Expiración</label>
-                <input type="text" class="form-control" id="cc-expiration" required>
-                <div class="invalid-feedback">
-                    Fecha de expiración es requerida
-                </div>
-            </div>
-
-            <div class="col-md-3">
-                <label for="cc-cvv" class="form-label">CVV</label>
-                <input type="text" class="form-control" id="cc-cvv" required>
-                <div class="invalid-feedback">
-                    Código de seguridad es requerido
-                </div>
-            </div>
-        </div>
-
-        <hr class="my-4">
-
-        <!---->
-
-        <button class="w-100 btn btn-primary btn-lg" type="submit">
-            Continua
-        </button>
-    </form>
-  </div>
+            <!--boton-->
+            <button class="w-100 btn btn-primary btn-lg" type="submit" [disabled]="!form.valid">
+                @if(form.valid && formSubmitted){
+                    <div class="valid-feedback mt-3">
+                        Todos los campos son validos ,
+                        Formulario listo para enviar 
+                    </div>
+                    
+                }
+                Continuar
+            </button>
+            
+        </form>
+    </div>
 </div>
