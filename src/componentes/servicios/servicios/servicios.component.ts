@@ -2,7 +2,7 @@ import { CommonModule } from '@angular/common';
 import { Component ,NgModule} from '@angular/core';
 import { FormGroup, FormControl, Validators, ValidatorFn, AbstractControl, ValidationErrors, FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { RouterOutlet } from '@angular/router';
-
+import Swal from 'sweetalert2';
 
 @Component({
   selector: 'app-servicios',
@@ -326,6 +326,20 @@ export class ServiciosComponent {
       console.log('datos guardados',nuevoReg);
 
       //alert
+      Swal.fire({
+        title: '¿Estás seguro?',
+        text: 'No podrás revertir esta solicitud',
+        icon: 'warning',
+        showCancelButton: true,
+        confirmButtonText: 'Sí, mandar información',
+        cancelButtonText: 'Cancelar'
+        }).then((result) => {
+          if (result.isConfirmed) {
+            // Acción si confirma
+            Swal.fire('Capturando', 'Tu información ha sido guardada.', 'success');
+          }
+      } );
+
       
     
     }
