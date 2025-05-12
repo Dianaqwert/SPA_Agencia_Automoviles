@@ -1,3 +1,4 @@
+
 :root {
   --color-orange: #FFA739;
   --color-yellow: #FCE07F;
@@ -7,6 +8,7 @@
   background: #FFFFFF;
   min-height: 100vh;
   padding: 4rem 0;
+  font-family: "DM Sans", sans-serif;
 }
 
 .financiamiento-title {
@@ -21,6 +23,7 @@
   color: #666666;
   font-size: 1.25rem;
   margin-bottom: 3rem;
+  font-family: "DM Sans", sans-serif;
 }
 
 .calculadora-card {
@@ -29,6 +32,7 @@
   box-shadow: 0 10px 30px rgba(0, 0, 0, 0.1);
   border: 2px solid #EEEEEE;
   transition: transform 0.3s ease;
+  font-family: "DM Sans", sans-serif;
 }
 
 .calculadora-card:hover {
@@ -404,6 +408,5 @@
 .resumen-card .table tr:hover {
   background-color: #f8f9fa;
 }
-
 
 
