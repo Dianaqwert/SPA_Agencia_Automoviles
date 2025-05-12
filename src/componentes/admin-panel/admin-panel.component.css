@@ -1,0 +1,241 @@
+/* Estilos generales */
+.admin-panel-container {
+  padding: 2rem;
+  background-color: #f5f5f5;
+  min-height: 100vh;
+  color: #050003;
+}
+
+.admin-card {
+  background-color: #FFFFFF;
+  border-radius: 8px;
+  overflow: hidden;
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  width: 100%;
+}
+
+.card-header {
+  background-color: #FFA739;
+  padding: 16px 24px;
+  color: #FFFFFF;
+  text-align: center;
+  width: 100%;
+  display: flex;
+  justify-content: center;
+}
+
+.center-title {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  width: 100%;
+  text-align: center;
+}
+
+.panel-title {
+  margin: 0;
+  font-weight: bold;
+  color: #FFFFFF;
+  font-size: 2rem;
+  text-align: center;
+  margin-bottom: 0.5rem;
+  width: 100%;
+}
+
+.user-name {
+  margin: 0;
+  font-weight: 500;
+  color: #FFFFFF;
+  font-size: 1.2rem;
+  text-align: center;
+  opacity: 0.9;
+  width: 100%;
+}
+
+.table-container {
+  overflow-x: auto;
+  margin: 1rem auto;
+  background-color: #FFFFFF;
+  border: 2px solid #FFA739;
+  border-radius: 8px;
+  width: 95%;
+}
+
+/* Tabla estilizada */
+.full-width-table {
+  width: 100%;
+  border-collapse: collapse;
+  background-color: #FFFFFF;
+}
+
+.full-width-table th {
+  background-color: #FFA739;
+  color: #FFFFFF;
+  padding: 10px;
+  font-weight: bold;
+}
+
+.full-width-table td {
+  padding: 8px 10px;
+  border-bottom: 1px solid #FFA739;
+  color: #050003;
+}
+
+.full-width-table tr {
+  background-color: #FFFFFF;
+  color: #050003;
+  cursor: pointer;
+}
+
+.full-width-table tr:hover {
+  background-color: #FCE07F;
+  color: #050003;
+}
+
+/* Botones */
+.edit-btn mat-icon,
+.delete-btn mat-icon {
+  color: #050003;
+}
+
+.edit-btn:hover mat-icon {
+  color: #050003;
+}
+
+.delete-btn:hover mat-icon {
+  color: red;
+}
+
+/* Campos de búsqueda */
+.search-field {
+  width: 100%;
+  margin: 1rem 0;
+}
+
+.search-icon {
+  color: #FFA739;
+}
+
+/* Formularios */
+.edit-form-container {
+  margin-top: 2rem;
+  padding: 1rem;
+  background-color: #FFFFFF;
+  border: 4px solid #FFA739;
+  border-radius: 10px 0;
+  color: #050003;
+}
+
+.edit-title {
+  font-weight: bold;
+  margin-bottom: 1rem;
+  color: #050003;
+}
+
+.edit-form .form-row {
+  display: flex;
+  gap: 1rem;
+  margin-bottom: 1rem;
+}
+
+.edit-form .form-field {
+  flex: 1;
+}
+
+.form-actions {
+  display: flex;
+  gap: 1rem;
+  justify-content: flex-end;
+}
+
+.save-btn {
+  background-color: #FFA739;
+  color: #FFFFFF;
+}
+
+.cancel-btn {
+  background-color: #050003;
+  color: #FFFFFF;
+}
+
+.custom-paginator {
+  margin-top: 1rem;
+  color: #050003;
+  background-color: #FFFFFF;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+/* Estilos para los campos de formulario */
+::ng-deep .mat-mdc-form-field {
+  .mat-mdc-form-field-label {
+    color: #050003 !important;
+  }
+
+  .mat-mdc-input-element {
+    color: #050003 !important;
+  }
+
+  .mat-mdc-select-value {
+    color: #050003 !important;
+  }
+
+  .mat-mdc-select-arrow {
+    color: #050003 !important;
+  }
+}
+
+/* Estilos para el paginador */
+::ng-deep .mat-mdc-paginator {
+  .mat-mdc-select-value,
+  .mat-mdc-select-arrow,
+  .mat-mdc-paginator-icon,
+  .mat-mdc-paginator-range-label {
+    color: #050003 !important;
+  }
+}
+
+.user-info {
+  display: flex;
+  align-items: center;
+  gap: 1rem;
+}
+
+.logout-btn {
+  color: #FFFFFF;
+  transition: transform 0.2s ease;
+}
+
+.logout-btn:hover {
+  transform: scale(1.1);
+  background-color: rgba(255, 255, 255, 0.1);
+}
+
+/* Estilos para el mensaje de alerta cuando no hay datos */
+.no-data-alert {
+  background-color: #ffebee;
+  color: #c62828;
+  padding: 1rem;
+  border-radius: 8px;
+  margin: 1rem 0;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 0.5rem;
+  border: 1px solid #ef9a9a;
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+}
+
+.no-data-alert mat-icon {
+  color: #c62828;
+}
+
+.no-data-alert span {
+  font-weight: 500;
+  font-size: 1.1rem;
+}

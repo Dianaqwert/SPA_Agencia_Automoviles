@@ -7,7 +7,7 @@ import { DetalleAutoComponent } from '../componentes/detalle-auto/detalle-auto.c
 import { ServiciosComponent } from '../componentes/servicios/servicios/servicios.component';
 import { RegisterComponent } from '../componentes/register/register.component';
 import { FinanciamientoComponent } from '../componentes/financiamiento/financiamiento.component';
-
+import { AdminPanelComponent } from '../componentes/admin-panel/admin-panel.component';
 export const routes: Routes = [
     {path:'inicio',component:InicioComponent},
     {path:'log-in',component:LogInComponent},
@@ -16,5 +16,6 @@ export const routes: Routes = [
     {path:'detalle/:id',component:DetalleAutoComponent},
     {path:'register',component:RegisterComponent},
     {path:'financiamiento',component:FinanciamientoComponent},
+    {path:'admin-panel',component:AdminPanelComponent},
     {path:'**',pathMatch:'full',redirectTo:'inicio'}
 ];
