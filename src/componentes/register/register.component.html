@@ -1,1 +1,132 @@
-<p>register works!</p>
+<main class="form-signin">
+  <form #f="ngForm" (ngSubmit)="onSubmit(f)" novalidate>
+
+    <div class="text-center mb-4">
+      <h1 class="h3 mb-3 fw-bold">Registro de Usuario</h1>
+    </div>
+
+    <!-- NOMBRE COMPLETO -->
+    <div class="form-floating mb-3">
+      <input
+        type="text"
+        class="form-control"
+        id="nombre"
+        name="nombre"
+        placeholder="Nombre completo"
+        [(ngModel)]="user.nombre"
+        required
+        minlength="3"
+        #nombre="ngModel"
+      />
+      <label for="nombre">Nombre completo</label>
+      @if (nombre.invalid && nombre.touched) {
+        <div class="text-danger mt-1">
+          @if (nombre.errors?.['required']) {
+            <small>El nombre es obligatorio.</small>
+          }
+          @if (nombre.errors?.['minlength']) {
+            <small>Mínimo 3 caracteres.</small>
+          }
+        </div>
+      }
+    </div>
+
+    <!-- USUARIO -->
+    <div class="form-floating mb-3">
+      <input
+        type="text"
+        class="form-control"
+        id="usuario"
+        name="usuario"
+        placeholder="Nombre de usuario"
+        [(ngModel)]="user.usuario"
+        required
+        minlength="4"
+        [ngModelOptions]="{ updateOn: 'blur' }"
+        #usuario="ngModel"
+        [ngClass]="{ 'is-invalid': usuario.invalid && usuario.touched }"
+      />
+      <label for="usuario">Usuario</label>
+      @if (usuario.invalid && usuario.touched) {
+        <div class="text-danger mt-1">
+          @if (usuario.errors?.['required']) {
+            <small>El nombre de usuario es obligatorio.</small>
+          }
+          @if (usuario.errors?.['minlength']) {
+            <small>Mínimo 4 caracteres.</small>
+          }
+          @if (usuarioUnico(user.usuario)) {
+            <small>Este usuario ya está registrado.</small>
+          }
+        </div>
+      }
+    </div>
+
+    <!-- CONTRASEÑA -->
+    <div class="form-floating mb-3">
+      <input
+        type="password"
+        class="form-control"
+        id="password"
+        name="password"
+        placeholder="Contraseña"
+        [(ngModel)]="user.password"
+        required
+        minlength="6"
+        #password="ngModel"
+      />
+      <label for="password">Contraseña</label>
+      @if (password.invalid && password.touched) {
+        <div class="text-danger mt-1">
+          @if (password.errors?.['required']) {
+            <small>La contraseña es obligatoria.</small>
+          }
+          @if (password.errors?.['minlength']) {
+            <small>Mínimo 6 caracteres.</small>
+          }
+        </div>
+      }
+    </div>
+
+    <!-- CONFIRMAR CONTRASEÑA -->
+    <div class="form-floating mb-3">
+      <input
+        type="password"
+        class="form-control"
+        id="confirmPassword"
+        name="confirmPassword"
+        placeholder="Confirmar contraseña"
+        [(ngModel)]="confirmPassword"
+        required
+        #confirmPasswordCtrl="ngModel"
+      />
+      <label for="confirmPassword">Confirmar Contraseña</label>
+      @if (confirmPasswordCtrl.invalid && confirmPasswordCtrl.touched) {
+        <div class="text-danger mt-1">
+          <small>La confirmación es obligatoria.</small>
+        </div>
+      }
+      @if (user.password !== confirmPassword && confirmPasswordCtrl.touched) {
+        <div class="text-danger mt-1">
+          <small>Las contraseñas no coinciden.</small>
+        </div>
+      }
+    </div>
+
+    <!-- BOTÓN -->
+    <div class="text-center">
+      <button
+        type="submit"
+        class="btn-login"
+        [disabled]="f.invalid || user.password !== confirmPassword"
+      >
+        Registrar
+      </button>
+    </div>
+
+    <p class="register-link mt-3 text-center">
+      ¿Ya tienes cuenta? <a [routerLink]="'/log-in'">Inicia sesión</a>
+    </p>
+
+  </form>
+</main>
