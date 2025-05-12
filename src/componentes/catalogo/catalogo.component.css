@@ -1,3 +1,17 @@
+div{
+  font-family: "DM Sans", sans-serif;
+}
+
+
+.c1{
+  background-repeat:no-repeat;
+  background-size: cover;
+  color: #FFA739;
+  background-position: center;
+}
+
+
+/*CATALOGO_____________________________________*/
 /* Estilos adicionales personalizados */
 .container {
     max-width: 1200px;
