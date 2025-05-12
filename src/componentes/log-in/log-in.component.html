@@ -6,25 +6,25 @@
 
     <!-- Usuario -->
     <div class="form-floating mb-3">
-      <input 
-        type="text" 
-        class="form-control" 
-        id="floatingInput" 
-        placeholder="admin123" 
+      <input
+        type="text"
+        class="form-control"
+        id="floatingInput"
+        placeholder="admin123"
         [(ngModel)]="username"
         name="username"
         required
       >
       <label for="floatingInput">Usuario</label>
     </div>
-    
+
     <!-- Contraseña -->
     <div class="form-floating mb-3">
-      <input 
-        type="password" 
-        class="form-control" 
-        id="floatingPassword" 
-        placeholder="Password" 
+      <input
+        type="password"
+        class="form-control"
+        id="floatingPassword"
+        placeholder="Password"
         [(ngModel)]="password"
         name="password"
         required
@@ -34,9 +34,9 @@
     <div class="text-center">
       <button class=" btn-login" type="submit">Iniciar sesión</button>
     </div>
-    
+
     <p class="register-link mt-3 text-center">
-      ¿No tienes cuenta? <a href="#">Registrarse</a>
+      ¿No tienes cuenta? <a [routerLink]="'/register'">Registrarse</a>
     </p>
   </form>
 </main>

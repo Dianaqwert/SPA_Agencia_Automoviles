@@ -1,0 +1,316 @@
+:root {
+  --color-orange: #FFA739;
+  --color-yellow: #FCE07F;
+}
+
+.financiamiento-container {
+  background: #FFFFFF;
+  min-height: 100vh;
+  padding: 4rem 0;
+}
+
+.financiamiento-title {
+  color: #333333;
+  font-weight: 800;
+  text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.1);
+  margin-bottom: 1rem;
+  font-size: 3rem;
+}
+
+.financiamiento-subtitle {
+  color: #666666;
+  font-size: 1.25rem;
+  margin-bottom: 3rem;
+}
+
+.calculadora-card {
+  background: #FFFFFF;
+  border-radius: 20px;
+  box-shadow: 0 10px 30px rgba(0, 0, 0, 0.1);
+  border: 2px solid #EEEEEE;
+  transition: transform 0.3s ease;
+}
+
+.calculadora-card:hover {
+  transform: translateY(-5px);
+}
+
+.card-title {
+  color: #333333;
+  font-weight: 700;
+  margin-bottom: 2rem;
+  text-align: center;
+  font-size: 1.8rem;
+}
+
+.form-label {
+  color: #666666;
+  font-weight: 600;
+  margin-bottom: 0.8rem;
+  font-size: 1.1rem;
+}
+
+.input-group {
+  border: 2px solid #EEEEEE;
+  border-radius: 12px;
+  overflow: hidden;
+  box-shadow: 0 4px 15px rgba(0, 0, 0, 0.05);
+  margin-bottom: 1.5rem;
+}
+
+.input-group:focus-within {
+  border-color: #FFA739;
+}
+
+.input-group-text {
+  background-color: #F5F5F5;
+  color: #666666;
+  border: none;
+  padding: 0.8rem 1.2rem;
+  font-weight: 600;
+}
+
+.form-control {
+  border: none;
+  padding: 0.8rem 1.2rem;
+  font-size: 1.1rem;
+  background-color: #FFFFFF;
+  color: #333333;
+}
+
+.form-control:focus {
+  box-shadow: none;
+  border: none;
+  background-color: #FFFFFF;
+}
+
+.btn-group {
+  border: 2px solid #EEEEEE;
+  border-radius: 12px;
+  overflow: hidden;
+  box-shadow: 0 4px 15px rgba(0, 0, 0, 0.05);
+  margin-bottom: 1.5rem;
+}
+
+.btn-plazo {
+  border: none;
+  color: #666666;
+  background-color: #FFFFFF;
+  padding: 0.8rem 1.2rem;
+  font-weight: 600;
+  transition: all 0.3s ease;
+}
+
+.btn-plazo.active {
+  background-color: #FFA739;
+  color: #FFFFFF;
+}
+
+.btn-plazo:hover:not(.active) {
+  background-color: #FCE07F;
+  color: #333333;
+}
+
+.btn-calculate {
+  background-color: #FFA739;
+  color: #FFFFFF;
+  border: none;
+  padding: 1rem 2.5rem;
+  font-weight: 600;
+  border-radius: 12px;
+  font-size: 1.1rem;
+  transition: all 0.3s ease;
+  box-shadow: 0 4px 15px rgba(0, 0, 0, 0.1);
+}
+
+.btn-calculate:hover {
+  background-color: #FCE07F;
+  color: #333333;
+  transform: translateY(-2px);
+  box-shadow: 0 6px 20px rgba(0, 0, 0, 0.15);
+}
+
+.alert-payment {
+  background-color: #FCE07F;
+  color: #333333;
+  border: none;
+  border-radius: 12px;
+  padding: 1.5rem;
+  margin: 2rem 0;
+  box-shadow: 0 4px 15px rgba(0, 0, 0, 0.1);
+}
+
+.alert-heading {
+  color: #FFA739;
+  font-weight: 700;
+  font-size: 1.2rem;
+  margin-bottom: 0.5rem;
+}
+
+.info-card {
+  background: #FFFFFF;
+  border-radius: 20px;
+  box-shadow: 0 10px 30px rgba(0, 0, 0, 0.1);
+  border: 2px solid #EEEEEE;
+  transition: transform 0.3s ease;
+  margin-bottom: 2rem;
+}
+
+.info-card:hover {
+  transform: translateY(-5px);
+}
+
+.icon-orange {
+  color: #FFA739;
+  margin-right: 0.8rem;
+  font-size: 1.2rem;
+}
+
+.list-item {
+  color: #666666;
+  margin-bottom: 1.2rem;
+  display: flex;
+  align-items: center;
+  font-size: 1.1rem;
+  transition: transform 0.3s ease;
+}
+
+.list-item:hover {
+  transform: translateX(5px);
+  color: #FFA739;
+}
+
+.process-container {
+  text-align: center;
+  padding: 1.5rem;
+  transition: transform 0.3s ease;
+}
+
+.process-container:hover {
+  transform: translateY(-5px);
+}
+
+.process-icon {
+  color: #FFA739;
+  font-size: 3rem;
+  margin-bottom: 1.2rem;
+  transition: transform 0.3s ease;
+}
+
+.process-container:hover .process-icon {
+  transform: scale(1.1);
+}
+
+.process-step {
+  color: #333333;
+  margin-bottom: 0.8rem;
+  font-weight: 600;
+  font-size: 1.2rem;
+}
+
+.process-description {
+  color: #666666;
+  font-size: 1rem;
+}
+
+.video-container {
+  margin-top: 4rem;
+  padding: 2rem;
+  background: #F5F5F5;
+  border-radius: 20px;
+  box-shadow: 0 10px 30px rgba(0, 0, 0, 0.1);
+  border: 2px solid #EEEEEE;
+  max-width: 900px;
+  margin-left: auto;
+  margin-right: auto;
+  transition: all 0.3s ease;
+}
+
+.video-container:hover {
+  border-color: #FFA739;
+  box-shadow: 0 15px 40px rgba(255, 167, 57, 0.15);
+  transform: translateY(-5px);
+  background: #FFFFFF;
+}
+
+.video-title {
+  color: #333333;
+  font-weight: 700;
+  font-size: 1.6rem;
+  text-align: center;
+  margin-bottom: 1.5rem;
+  transition: color 0.3s ease;
+}
+
+.video-container:hover .video-title {
+  color: #FFA739;
+}
+
+.video-wrapper {
+  position: relative;
+  padding-bottom: 56.25%; /* 16:9 Aspect Ratio */
+  height: 0;
+  overflow: hidden;
+  border-radius: 12px;
+  max-width: 700px;
+  margin: 0 auto;
+  transition: all 0.3s ease;
+  background: #FFFFFF;
+  box-shadow: 0 5px 15px rgba(0, 0, 0, 0.05);
+}
+
+.video-wrapper iframe {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  border: none;
+  transition: all 0.3s ease;
+}
+
+/* Formulario de Solicitud de Préstamo */
+.solicitud-card {
+  background: #FFFFFF;
+  border-radius: 20px;
+  box-shadow: 0 10px 30px rgba(0, 0, 0, 0.1);
+  border: 2px solid #EEEEEE;
+  transition: transform 0.3s ease;
+  margin-bottom: 2rem;
+}
+.solicitud-card:hover {
+  transform: translateY(-5px);
+}
+.solicitud-title {
+  color: #FFA739;
+  font-weight: 700;
+  margin-bottom: 2rem;
+  text-align: center;
+  font-size: 1.6rem;
+}
+.solicitud-btn {
+  background-color: #FFA739;
+  color: #FFFFFF;
+  border: none;
+  padding: 1rem 2.5rem;
+  font-weight: 600;
+  border-radius: 12px;
+  font-size: 1.1rem;
+  transition: all 0.3s ease;
+  box-shadow: 0 4px 15px rgba(0, 0, 0, 0.1);
+}
+.solicitud-btn:disabled {
+  background-color: #FCE07F;
+  color: #CCCCCC;
+}
+.solicitud-btn:hover:not(:disabled) {
+  background-color: #FCE07F;
+  color: #333333;
+  transform: translateY(-2px);
+  box-shadow: 0 6px 20px rgba(0, 0, 0, 0.15);
+}
+.solicitud-error {
+  color: #d9534f;
+  font-size: 0.95rem;
+  margin-top: 0.25rem;
+}
