@@ -4,6 +4,15 @@ import { FormsModule } from '@angular/forms';
 import { RouterModule } from '@angular/router';
 import { Pipe, PipeTransform } from '@angular/core';
 import { DomSanitizer, SafeResourceUrl } from '@angular/platform-browser';
+import { MatCardModule } from '@angular/material/card';
+import { MatInputModule } from '@angular/material/input';
+import { MatButtonModule } from '@angular/material/button';
+import { MatFormFieldModule } from '@angular/material/form-field';
+import { MatIconModule } from '@angular/material/icon';
+import { MatDividerModule } from '@angular/material/divider';
+import { MatProgressBarModule } from '@angular/material/progress-bar';
+import { MatSnackBar, MatSnackBarModule } from '@angular/material/snack-bar';
+import { MatListModule } from '@angular/material/list';
 import Swal from 'sweetalert2';
 
 @Pipe({
@@ -30,7 +39,21 @@ export class YoutubeEmbedPipe implements PipeTransform {
 @Component({
   selector: 'app-financiamiento',
   standalone: true,
-  imports: [CommonModule, FormsModule, RouterModule, YoutubeEmbedPipe],
+  imports: [
+    CommonModule,
+    FormsModule,
+    RouterModule,
+    YoutubeEmbedPipe,
+    MatCardModule,
+    MatInputModule,
+    MatButtonModule,
+    MatFormFieldModule,
+    MatIconModule,
+    MatDividerModule,
+    MatProgressBarModule,
+    MatSnackBarModule,
+    MatListModule
+  ],
   templateUrl: './financiamiento.component.html',
   styleUrls: ['./financiamiento.component.css']
 })
@@ -53,6 +76,8 @@ export class FinanciamientoComponent {
   errorPlazo: string = '';
   errorPagoMensual: string = '';
   envios: number = 0;
+
+  constructor(private snackBar: MatSnackBar) {}
 
   validarMontoPrestamo() {
     if (!this.montoPrestamo) {
@@ -122,7 +147,6 @@ export class FinanciamientoComponent {
     this.validarPagoMensual();
     this.validarTelefono();
     if (this.formularioValido()) {
-      // Guardar en localStorage
       const nuevaSolicitud = {
         montoPrestamo: this.montoPrestamo,
         plazoMeses: this.plazoMeses,
@@ -133,20 +157,27 @@ export class FinanciamientoComponent {
       solicitudes.push(nuevaSolicitud);
       localStorage.setItem('solicitudesFinanciamiento', JSON.stringify(solicitudes));
       this.envios++;
-      Swal.fire({
-        icon: 'success',
-        title: 'Solicitud enviada',
-        text: 'Tu solicitud de préstamo ha sido enviada correctamente.'
+
+      this.snackBar.open('Solicitud enviada correctamente', 'Cerrar', {
+        duration: 3000,
+        horizontalPosition: 'center',
+        verticalPosition: 'top'
       });
-      // Mostrar localStorage después de dos envíos
+
       if (this.envios === 2) {
-        Swal.fire({
-          icon: 'info',
-          title: 'Solicitudes almacenadas',
-          html: `<pre style='text-align:left'>${JSON.stringify(solicitudes, null, 2)}</pre>`
+        this.snackBar.open('Solicitudes almacenadas en localStorage', 'Ver', {
+          duration: 5000,
+          horizontalPosition: 'center',
+          verticalPosition: 'top'
+        }).onAction().subscribe(() => {
+          Swal.fire({
+            icon: 'info',
+            title: 'Solicitudes almacenadas',
+            html: `<pre style='text-align:left'>${JSON.stringify(solicitudes, null, 2)}</pre>`
+          });
         });
       }
-      // Limpiar solo el campo teléfono para permitir otro envío rápido
+
       this.telefono = '';
       this.formSubmitted = false;
     }
