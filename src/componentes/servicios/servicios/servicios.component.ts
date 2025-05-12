@@ -27,10 +27,7 @@ export class ServiciosComponent {
   fechaMin:string;
   fechaMax:string;
   //local
-  // Añade esta propiedad
   ultimoRegistro: any = null;
-
-
 
   constructor(){
     //fecha minima que es la actual

@@ -3,14 +3,14 @@ div{
 }
 
 .c1{
-    background-repeat:no-repeat;
-    background-size: cover;
-    color: #FFA739;
+  background-repeat:no-repeat;
+  background-size: cover;
+  color: #FFA739;
 }
 
 /*iconos*/
 .bi-tools{
-    transition: 0s;
+  transition: 0s;
 }
 
 .bi-tools:hover{
