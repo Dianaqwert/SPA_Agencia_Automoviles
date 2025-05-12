@@ -201,16 +201,19 @@
                 <span class="input-group-text">$</span>
                 <input type="number" class="form-control" [value]="montoPrestamo" disabled [ngStyle]="{'background-color': '#e9ecef'}">
               </div>
+              <div *ngIf="(formSubmitted || errorMontoPrestamo) && errorMontoPrestamo" class="solicitud-error text-danger small mt-1">{{errorMontoPrestamo}}</div>
             </div>
             <!-- Plazo de Financiamiento -->
             <div class="mb-3">
               <label class="form-label">Plazo de Financiamiento</label>
-              <input type="text" class="form-control" [value]="plazoMeses + ' meses'" disabled>
+              <input type="text" class="form-control" [value]="plazoMeses + ' meses'" disabled [ngStyle]="{'background-color': '#e9ecef'}">
+              <div *ngIf="(formSubmitted || errorPlazo) && errorPlazo" class="solicitud-error text-danger small mt-1">{{errorPlazo}}</div>
             </div>
             <!-- Pago Mensual Estimado -->
             <div class="mb-3">
               <label class="form-label">Pago Mensual Estimado</label>
-              <input type="text" class="form-control" [value]="pagoMensual | currency:'MXN':'symbol':'1.2-2'" disabled>
+              <input type="text" class="form-control" [value]="pagoMensual | currency:'MXN':'symbol':'1.2-2'" disabled [ngStyle]="{'background-color': '#e9ecef'}">
+              <div *ngIf="(formSubmitted || errorPagoMensual) && errorPagoMensual" class="solicitud-error text-danger small mt-1">{{errorPagoMensual}}</div>
             </div>
             <!-- Teléfono -->
             <div class="mb-3">
@@ -237,3 +240,7 @@
     </div>
   </div>
 </div>
+
+
+
+
