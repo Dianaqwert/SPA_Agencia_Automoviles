@@ -1,16 +1,12 @@
-
 <nav class="navbar navbar-expand-lg custom-navbar sticky-top p-4">
     <div class="container-fluid">
-
-        <a class="navbar-brand d-flex align-items-center gap-2">
-            <img src="Raeda-p-removebg-preview.png" alt="Logo" width="100" height="80" class="d-inline-block">
-            <div class="brand-text d-flex flex-column">
-              <strong><span class="title">RAEDA CARS</span></strong>
-              <span class="subtitle">Cars in motion</span>
-            </div>
-        </a>
-
-
+      <a class="navbar-brand d-flex align-items-center gap-2" [routerLink]="['/inicio']">
+        <img src="Raeda-p-removebg-preview.png" alt="Logo" width="100" height="80" class="d-inline-block">
+        <div class="brand-text d-flex flex-column">
+          <strong><span class="title">RAEDA CARS</span></strong>
+          <span class="subtitle">Cars in motion</span>
+        </div>
+      </a>
       <button class="navbar-toggler" type="button" data-bs-toggle="collapse"
         data-bs-target="#navbarNavAltMarkup" aria-controls="navbarNavAltMarkup" aria-expanded="false"
         aria-label="Toggle navigation">
@@ -18,15 +14,14 @@
       </button>
 
       <div class="collapse navbar-collapse" id="navbarNavAltMarkup">
-        <div class="navbar-nav mx-auto" style="gap: 15px;">
+        <div class="navbar-nav mx-auto">
           <a class="nav-link" [routerLink]="['/inicio']">Inicio</a>
-          <a class="nav-link" [routerLink]="['/catalogo']">Catálogo </a>
+          <a class="nav-link" [routerLink]="['/catalogo']">Catálogo</a>
           <a class="nav-link" [routerLink]="['/servicios']">Servicios</a>
           <a class="nav-link" [routerLink]="['/financiamiento']">Financiamiento</a>
           <a class="nav-link" [routerLink]="['/equipo']">Equipo</a>
-          <a class="btn btn-orange" [routerLink]="['/log-in']">Log In</a>
+          <a class="btn btn-orange" [routerLink]="['/log-in']">{{nom}}</a>
         </div>
       </div>
-
     </div>
   </nav>

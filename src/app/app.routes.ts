@@ -7,6 +7,7 @@ import { CatalogoComponent } from '../componentes/catalogo/catalogo.component';
 import { ServiciosComponent } from '../componentes/servicios/servicios/servicios.component';
 import { RegisterComponent } from '../componentes/register/register.component';
 import { FinanciamientoComponent } from '../componentes/financiamiento/financiamiento.component';
+import { AdminPanelComponent } from '../componentes/admin-panel/admin-panel.component';
 import { EquipoComponent } from '../componentes/equipo/equipo/equipo.component';
 
 export const routes: Routes = [
@@ -17,6 +18,7 @@ export const routes: Routes = [
     //{path:'detalle/:id',component:DetalleAutoComponent},
     {path:'register',component:RegisterComponent},
     {path:'financiamiento',component:FinanciamientoComponent},
+    {path:'admin-panel',component:AdminPanelComponent},
     {path:'equipo',component:EquipoComponent},
     {path:'**',pathMatch:'full',redirectTo:'inicio'}
 ];

@@ -1,7 +1,8 @@
-import { Component } from '@angular/core';
+import { Component, OnInit } from '@angular/core';
 import { FormsModule } from '@angular/forms';
 import { CommonModule } from '@angular/common';
-import { RouterModule } from '@angular/router';
+import { Router, RouterModule } from '@angular/router';
+import Swal from 'sweetalert2';
 
 @Component({
   selector: 'app-log-in',
@@ -10,16 +11,27 @@ import { RouterModule } from '@angular/router';
   templateUrl: './log-in.component.html',
   styleUrls: ['./log-in.component.css']
 })
-export class LogInComponent {
+export class LogInComponent implements OnInit {
   adminAccounts = [
-    { username: 'admin1', password: '1234', fullName: 'Administrador Uno' },
+    { username: 'adminRene', password: '1234', fullName: 'Rene De Anda' },
     { username: 'admin2', password: 'abcd', fullName: 'Administrador Dos' },
     { username: 'admin3', password: 'pass', fullName: 'Administrador Tres' }
   ];
-
+  
   username: string = '';
   password: string = '';
+  fullName: string = '';
   errorMessage: string = '';
+  
+  constructor(private router: Router) {}
+
+  ngOnInit() {
+    // Verificar si hay una sesión activa
+    const currentUser = localStorage.getItem('currentUser');
+    if (currentUser) {
+      this.router.navigate(['/admin-panel']);
+    }
+  }
 
   login() {
     const validUser = this.adminAccounts.find(
@@ -28,11 +40,28 @@ export class LogInComponent {
 
     if (validUser) {
       this.errorMessage = '';
-      alert(`Bienvenido ${validUser.fullName}`);
-      // Redirección: this.router.navigate(['/dashboard']);
+      // Store user information in localStorage
+      localStorage.setItem('currentUser', JSON.stringify(validUser));
+      
+      // Mostrar mensaje de éxito
+      Swal.fire({
+        title: '¡Bienvenido!',
+        text: `Hola ${validUser.fullName}`,
+        icon: 'success',
+        confirmButtonColor: '#FFA739',
+        timer: 1500,
+        showConfirmButton: false
+      }).then(() => {
+        this.router.navigate(['/admin-panel']);
+      });
     } else {
       this.errorMessage = 'Credenciales incorrectas. Inténtalo de nuevo.';
-      alert(this.errorMessage);
+      Swal.fire({
+        title: 'Error',
+        text: this.errorMessage,
+        icon: 'error',
+        confirmButtonColor: '#FFA739'
+      });
     }
   }
 }
