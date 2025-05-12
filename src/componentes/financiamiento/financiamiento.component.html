@@ -196,7 +196,7 @@
             <!-- Plazo de Financiamiento -->
             <div class="mb-3">
               <label class="form-label">Plazo de Financiamiento</label>
-              <input type="text" class="form-control" [value]="plazoMeses + ' meses'" disabled [ngStyle]="{'background-color': '#e9ecef'}">
+              <input type="text" class="form-control" [value]="plazoMeses ? plazoMeses + ' meses' : 'Selecciona un plazo'" disabled [ngStyle]="{'background-color': '#e9ecef'}">
               @if ((formSubmitted || errorPlazo) && errorPlazo) {
                 <div class="solicitud-error text-danger small mt-1">{{errorPlazo}}</div>
               }
@@ -220,11 +220,79 @@
               }
             </div>
 
+            <!-- Nombre de Usuario -->
+            <div class="mb-3">
+              <label class="form-label">Nombre de Usuario</label>
+              <input type="text" class="form-control" [(ngModel)]="nombreUsuario" name="nombreUsuario" minlength="3" required (input)="validarNombreUsuario()">
+              @if ((formSubmitted || nombreUsuario) && errorNombreUsuario) {
+                <div class="solicitud-error text-danger small mt-1">{{errorNombreUsuario}}</div>
+              }
+            </div>
+
             <button type="submit" class="solicitud-btn btn btn-primary w-100" [disabled]="!formularioValido()">
               Solicitar Préstamo
             </button>
           </form>
         </div>
+      </div>
+    </div>
+
+    <!-- Resumen de Solicitudes -->
+    <div class="row justify-content-center mt-5">
+      <div class="col-md-10">
+        <mat-card class="resumen-card">
+          <mat-card-header>
+            <mat-icon class="icon-orange">list_alt</mat-icon>
+            <mat-card-title>Resumen de Solicitudes</mat-card-title>
+          </mat-card-header>
+          <mat-card-content>
+            @if (solicitudes.length > 0) {
+              <div class="table-responsive">
+                <table class="table">
+                  <thead>
+                    <tr>
+                      <th>Usuario</th>
+                      <th>Monto</th>
+                      <th>Plazo</th>
+                      <th>Pago Mensual</th>
+                      <th>Teléfono</th>
+                      <th>Fecha</th>
+                      <th>Acción</th>
+                    </tr>
+                  </thead>
+                  <tbody>
+                    @for (solicitud of solicitudes; track solicitud.fecha) {
+                      <tr [ngClass]="{'table-success': solicitud.estado === 'aprobado', 'table-danger': solicitud.estado === 'rechazado'}">
+                        <td>{{solicitud.nombreUsuario}}</td>
+                        <td>{{solicitud.montoPrestamo | currency:'MXN':'symbol':'1.2-2'}}</td>
+                        <td>{{solicitud.plazoMeses}} meses</td>
+                        <td>{{solicitud.pagoMensual | currency:'MXN':'symbol':'1.2-2'}}</td>
+                        <td>{{solicitud.telefono}}</td>
+                        <td>{{solicitud.fecha}}</td>
+                        <td>
+                          @if (solicitud.estado === 'pendiente' || !solicitud.estado) {
+                            <button mat-icon-button color="primary" (click)="cambiarEstado(solicitud, 'aprobado')" matTooltip="Aprobar">
+                              <mat-icon>check_circle</mat-icon>
+                            </button>
+                            <button mat-icon-button color="warn" (click)="cambiarEstado(solicitud, 'rechazado')" matTooltip="Rechazar">
+                              <mat-icon>cancel</mat-icon>
+                            </button>
+                          } @else if (solicitud.estado === 'aprobado') {
+                            <mat-icon class="text-success">check_circle</mat-icon>
+                          } @else if (solicitud.estado === 'rechazado') {
+                            <mat-icon class="text-danger">cancel</mat-icon>
+                          }
+                        </td>
+                      </tr>
+                    }
+                  </tbody>
+                </table>
+              </div>
+            } @else {
+              <p class="text-center text-muted my-4">No hay solicitudes registradas</p>
+            }
+          </mat-card-content>
+        </mat-card>
       </div>
     </div>
 

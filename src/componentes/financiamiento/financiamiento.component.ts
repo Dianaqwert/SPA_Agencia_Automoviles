@@ -13,6 +13,7 @@ import { MatDividerModule } from '@angular/material/divider';
 import { MatProgressBarModule } from '@angular/material/progress-bar';
 import { MatSnackBar, MatSnackBarModule } from '@angular/material/snack-bar';
 import { MatListModule } from '@angular/material/list';
+import { MatTooltipModule } from '@angular/material/tooltip';
 import Swal from 'sweetalert2';
 
 @Pipe({
@@ -52,19 +53,22 @@ export class YoutubeEmbedPipe implements PipeTransform {
     MatDividerModule,
     MatProgressBarModule,
     MatSnackBarModule,
-    MatListModule
+    MatListModule,
+    MatTooltipModule
   ],
   templateUrl: './financiamiento.component.html',
   styleUrls: ['./financiamiento.component.css']
 })
 export class FinanciamientoComponent {
   montoPrestamo: number = 50000;
-  plazoMeses: number = 36;
+  plazoMeses: number | undefined;
   tasaInteres: number = 12.9;
   pagoMensual: number = 0;
   autoSeleccionado: any = null;
   montoMinimo: number = 50000;
   errorMonto: string = '';
+  nombreUsuario: string = '';
+  errorNombreUsuario: string = '';
 
   videoUrl = 'https://www.youtube.com/watch?v=6kJYQry7KjQ&t=3s';
 
@@ -76,8 +80,25 @@ export class FinanciamientoComponent {
   errorPlazo: string = '';
   errorPagoMensual: string = '';
   envios: number = 0;
+  solicitudes: any[] = [];
 
-  constructor(private snackBar: MatSnackBar) {}
+  constructor(private snackBar: MatSnackBar) {
+    this.cargarSolicitudes();
+  }
+
+  cargarSolicitudes() {
+    this.solicitudes = JSON.parse(localStorage.getItem('solicitudesFinanciamiento') || '[]');
+  }
+
+  validarNombreUsuario() {
+    if (!this.nombreUsuario) {
+      this.errorNombreUsuario = 'El nombre de usuario es requerido';
+    } else if (this.nombreUsuario.length < 3) {
+      this.errorNombreUsuario = 'El nombre debe tener al menos 3 caracteres';
+    } else {
+      this.errorNombreUsuario = '';
+    }
+  }
 
   validarMontoPrestamo() {
     if (!this.montoPrestamo) {
@@ -127,16 +148,20 @@ export class FinanciamientoComponent {
     this.validarPlazo();
     this.validarPagoMensual();
     this.validarTelefono();
+    this.validarNombreUsuario();
     return (
       this.montoPrestamo >= this.montoMinimo &&
       this.montoPrestamo % 1000 === 0 &&
+      this.plazoMeses !== undefined &&
       [24, 36, 48, 60].includes(this.plazoMeses) &&
       this.pagoMensual > 0 &&
       !!this.telefono &&
+      !!this.nombreUsuario &&
       !this.errorMontoPrestamo &&
       !this.errorPlazo &&
       !this.errorPagoMensual &&
-      !this.errorTelefono
+      !this.errorTelefono &&
+      !this.errorNombreUsuario
     );
   }
 
@@ -146,39 +171,35 @@ export class FinanciamientoComponent {
     this.validarPlazo();
     this.validarPagoMensual();
     this.validarTelefono();
+    this.validarNombreUsuario();
     if (this.formularioValido()) {
       const nuevaSolicitud = {
+        nombreUsuario: this.nombreUsuario,
         montoPrestamo: this.montoPrestamo,
         plazoMeses: this.plazoMeses,
         pagoMensual: this.pagoMensual,
-        telefono: this.telefono
+        telefono: this.telefono,
+        fecha: new Date().toLocaleString(),
+        estado: 'pendiente'
       };
       let solicitudes = JSON.parse(localStorage.getItem('solicitudesFinanciamiento') || '[]');
       solicitudes.push(nuevaSolicitud);
       localStorage.setItem('solicitudesFinanciamiento', JSON.stringify(solicitudes));
       this.envios++;
+      this.cargarSolicitudes();
 
-      this.snackBar.open('Solicitud enviada correctamente', 'Cerrar', {
-        duration: 3000,
-        horizontalPosition: 'center',
-        verticalPosition: 'top'
+      Swal.fire({
+        title: '¡Éxito!',
+        text: 'Solicitud enviada con éxito',
+        icon: 'success',
+        confirmButtonText: 'Aceptar',
+        confirmButtonColor: '#FFA739',
+        timer: 3000,
+        timerProgressBar: true
       });
 
-      if (this.envios === 2) {
-        this.snackBar.open('Solicitudes almacenadas en localStorage', 'Ver', {
-          duration: 5000,
-          horizontalPosition: 'center',
-          verticalPosition: 'top'
-        }).onAction().subscribe(() => {
-          Swal.fire({
-            icon: 'info',
-            title: 'Solicitudes almacenadas',
-            html: `<pre style='text-align:left'>${JSON.stringify(solicitudes, null, 2)}</pre>`
-          });
-        });
-      }
-
       this.telefono = '';
+      this.nombreUsuario = '';
       this.formSubmitted = false;
     }
   }
@@ -191,7 +212,7 @@ export class FinanciamientoComponent {
   }
 
   calcularFinanciamiento() {
-    if (this.montoPrestamo >= this.montoMinimo) {
+    if (this.montoPrestamo >= this.montoMinimo && this.plazoMeses) {
       const tasaMensual = this.tasaInteres / 100 / 12;
       const numerador = this.montoPrestamo * tasaMensual * Math.pow(1 + tasaMensual, this.plazoMeses);
       const denominador = Math.pow(1 + tasaMensual, this.plazoMeses) - 1;
@@ -206,6 +227,17 @@ export class FinanciamientoComponent {
     this.plazoMeses = meses;
     this.validarPlazo();
     this.calcularFinanciamiento();
+  }
+
+  cambiarEstado(solicitud: any, nuevoEstado: string) {
+    solicitud.estado = nuevoEstado;
+    let solicitudes = JSON.parse(localStorage.getItem('solicitudesFinanciamiento') || '[]');
+    const index = solicitudes.findIndex((s: any) => s.fecha === solicitud.fecha);
+    if (index !== -1) {
+      solicitudes[index] = solicitud;
+      localStorage.setItem('solicitudesFinanciamiento', JSON.stringify(solicitudes));
+      this.cargarSolicitudes();
+    }
   }
 }
 
