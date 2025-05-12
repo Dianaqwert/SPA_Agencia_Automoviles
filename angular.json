@@ -28,7 +28,11 @@
               }
             ],
             "styles": [
+<<<<<<< HEAD
               "src/custom-theme.scss",
+=======
+              "@angular/material/prebuilt-themes/azure-blue.css",
+>>>>>>> fb2c6960493425ba664a590b965edf602e1f748b
               "src/styles.css",
               "node_modules/bootstrap/dist/css/bootstrap.min.css",
               "node_modules/bootstrap-icons/font/bootstrap-icons.min.css"
@@ -91,6 +95,7 @@
               }
             ],
             "styles": [
+              "@angular/material/prebuilt-themes/azure-blue.css",
               "src/styles.css"
             ],
             "scripts": []
