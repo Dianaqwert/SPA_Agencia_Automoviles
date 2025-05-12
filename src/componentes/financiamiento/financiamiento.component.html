@@ -188,6 +188,42 @@
       </div>
     </div>
 
+    <!-- Formulario de Solicitud de Préstamo (movido antes del video) -->
+    <div class="row justify-content-center mt-5">
+      <div class="col-md-7">
+        <div class="solicitud-card card shadow p-4">
+          <h3 class="solicitud-title mb-4 text-center">Solicitar Préstamo</h3>
+          <form (ngSubmit)="solicitarPrestamo()" autocomplete="off">
+            <!-- Monto del Préstamo -->
+            <div class="mb-3">
+              <label class="form-label">Monto del Préstamo</label>
+              <div class="input-group">
+                <span class="input-group-text">$</span>
+                <input type="number" class="form-control" [value]="montoPrestamo" disabled [ngStyle]="{'background-color': '#e9ecef'}">
+              </div>
+            </div>
+            <!-- Plazo de Financiamiento -->
+            <div class="mb-3">
+              <label class="form-label">Plazo de Financiamiento</label>
+              <input type="text" class="form-control" [value]="plazoMeses + ' meses'" disabled>
+            </div>
+            <!-- Pago Mensual Estimado -->
+            <div class="mb-3">
+              <label class="form-label">Pago Mensual Estimado</label>
+              <input type="text" class="form-control" [value]="pagoMensual | currency:'MXN':'symbol':'1.2-2'" disabled>
+            </div>
+            <!-- Teléfono -->
+            <div class="mb-3">
+              <label class="form-label">Teléfono</label>
+              <input type="tel" class="form-control" [(ngModel)]="telefono" name="telefono" maxlength="10" minlength="10" pattern="[0-9]{10}" required (input)="validarTelefono()">
+              <div *ngIf="(formSubmitted || telefono) && errorTelefono" class="solicitud-error text-danger small mt-1">{{errorTelefono}}</div>
+            </div>
+            <button type="submit" class="solicitud-btn btn btn-primary w-100" [disabled]="!formularioValido()">Solicitar Préstamo</button>
+          </form>
+        </div>
+      </div>
+    </div>
+
     <div class="video-container">
       <h3 class="video-title">Conoce más sobre nuestro financiamiento</h3>
       <div class="video-wrapper">

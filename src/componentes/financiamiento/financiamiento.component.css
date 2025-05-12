@@ -268,3 +268,49 @@
   border: none;
   transition: all 0.3s ease;
 }
+
+/* Formulario de Solicitud de Préstamo */
+.solicitud-card {
+  background: #FFFFFF;
+  border-radius: 20px;
+  box-shadow: 0 10px 30px rgba(0, 0, 0, 0.1);
+  border: 2px solid #EEEEEE;
+  transition: transform 0.3s ease;
+  margin-bottom: 2rem;
+}
+.solicitud-card:hover {
+  transform: translateY(-5px);
+}
+.solicitud-title {
+  color: #FFA739;
+  font-weight: 700;
+  margin-bottom: 2rem;
+  text-align: center;
+  font-size: 1.6rem;
+}
+.solicitud-btn {
+  background-color: #FFA739;
+  color: #FFFFFF;
+  border: none;
+  padding: 1rem 2.5rem;
+  font-weight: 600;
+  border-radius: 12px;
+  font-size: 1.1rem;
+  transition: all 0.3s ease;
+  box-shadow: 0 4px 15px rgba(0, 0, 0, 0.1);
+}
+.solicitud-btn:disabled {
+  background-color: #FCE07F;
+  color: #CCCCCC;
+}
+.solicitud-btn:hover:not(:disabled) {
+  background-color: #FCE07F;
+  color: #333333;
+  transform: translateY(-2px);
+  box-shadow: 0 6px 20px rgba(0, 0, 0, 0.15);
+}
+.solicitud-error {
+  color: #d9534f;
+  font-size: 0.95rem;
+  margin-top: 0.25rem;
+}

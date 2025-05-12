@@ -4,6 +4,7 @@ import { FormsModule } from '@angular/forms';
 import { RouterModule } from '@angular/router';
 import { Pipe, PipeTransform } from '@angular/core';
 import { DomSanitizer, SafeResourceUrl } from '@angular/platform-browser';
+import Swal from 'sweetalert2';
 
 @Pipe({
   name: 'youtubeEmbed',
@@ -44,6 +45,11 @@ export class FinanciamientoComponent {
 
   videoUrl = 'https://www.youtube.com/watch?v=6kJYQry7KjQ&t=3s';
 
+  // Formulario de solicitud de préstamo
+  telefono: string = '';
+  formSubmitted: boolean = false;
+  errorTelefono: string = '';
+
   validarMonto(monto: number) {
     if (monto < this.montoMinimo) {
       this.errorMonto = `El monto mínimo es de $${this.montoMinimo.toLocaleString()}`;
@@ -68,5 +74,42 @@ export class FinanciamientoComponent {
   actualizarPlazo(meses: number) {
     this.plazoMeses = meses;
     this.calcularFinanciamiento();
+  }
+
+  // Validación extra: teléfono debe ser 10 dígitos
+  validarTelefono() {
+    if (!this.telefono) {
+      this.errorTelefono = 'El teléfono es requerido';
+    } else if (!/^\d{10}$/.test(this.telefono)) {
+      this.errorTelefono = 'El teléfono debe tener 10 dígitos';
+    } else {
+      this.errorTelefono = '';
+    }
+  }
+
+  // Validación general del formulario
+  formularioValido(): boolean {
+    return (
+      this.montoPrestamo >= this.montoMinimo &&
+      this.plazoMeses > 0 &&
+      this.pagoMensual > 0 &&
+      !!this.telefono &&
+      !this.errorTelefono
+    );
+  }
+
+  solicitarPrestamo() {
+    this.formSubmitted = true;
+    this.validarTelefono();
+    if (this.formularioValido()) {
+      Swal.fire({
+        icon: 'success',
+        title: 'Solicitud enviada',
+        text: 'Tu solicitud de préstamo ha sido enviada correctamente.'
+      });
+      // Limpiar formulario si se desea
+      // this.telefono = '';
+      // this.formSubmitted = false;
+    }
   }
 }
