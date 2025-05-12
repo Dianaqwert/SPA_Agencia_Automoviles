@@ -1,0 +1,83 @@
+:root {
+  --color-dark: #050003;
+  --color-orange: #FFA739;
+  --color-yellow: #FCE07F;
+  --color-white: #FFFFFF;
+}
+
+/* Estilos generales del formulario */
+.form-signin {
+  width: 25%;
+  margin: auto;
+  padding: 2rem;
+  background-color: var(--color-white);
+  border: 10px solid var(--color-orange);
+  border-radius: 10px;
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+}
+
+/* Título */
+.form-signin h1 {
+  color: var(--color-dark);
+}
+
+/* Campos de entrada */
+.form-control {
+  background-color: var(--color-white);
+  border: 1px solid var(--color-orange);
+  color: var(--color-dark);
+  box-shadow: 0 0 0 0.25rem rgba(255, 167, 57, 0.25);
+}
+
+/* Etiquetas */
+.form-floating label {
+  color: var(--color-dark);
+}
+
+/* Mensajes de error */
+.text-danger small {
+  font-weight: 500;
+}
+
+/* Botón de registro */
+.btn-login {
+  background-color: #FCE07F; /* Amarillo */
+  color: var(--color-dark); /* Texto oscuro */
+  border: none;
+  border-radius: 0 15px;
+  text-align: center;
+  padding: 15px 10px;
+  margin: 5px;
+  font-weight: bold;
+  transition: all 0.3s;
+  cursor: pointer;
+}
+
+.btn-login:hover {
+  background-color: #f8d76e;
+  transform: translateY(-2px);
+}
+
+/* Enlace opcional para iniciar sesión */
+.register-link {
+  color: var(--color-dark);
+}
+
+.register-link a {
+  color: var(--color-orange);
+  text-decoration: none;
+  font-weight: bold;
+  transition: color 0.3s;
+  cursor: pointer;
+}
+
+.register-link a:hover {
+  color: #e6952e;
+  text-decoration: underline;
+}
+
+/* Para marcar campos inválidos */
+.is-invalid {
+  border-color: red !important;
+  box-shadow: 0 0 0 0.25rem rgba(255, 0, 0, 0.25);
+}
