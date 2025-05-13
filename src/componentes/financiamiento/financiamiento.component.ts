@@ -1,4 +1,4 @@
-import { Component, OnInit, ChangeDetectorRef } from '@angular/core';
+import { Component, OnInit, ChangeDetectorRef, Input, Output, EventEmitter } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { FormsModule } from '@angular/forms';
 import { RouterModule } from '@angular/router';
@@ -81,6 +81,12 @@ export class FinanciamientoComponent implements OnInit {
   errorPagoMensual: string = '';
   envios: number = 0;
   solicitudes: any[] = [];
+
+  // Recibe el nombre del usuario desde el padre
+  @Input() nombrePadre: string = 'Rene';
+
+  // Emite un evento al padre cuando se envía la solicitud
+  @Output() solicitudEnviada = new EventEmitter<any>();
 
   constructor(
     private snackBar: MatSnackBar,
@@ -195,6 +201,9 @@ export class FinanciamientoComponent implements OnInit {
       localStorage.setItem('solicitudesFinanciamiento', JSON.stringify(solicitudes));
       this.envios++;
       this.cargarSolicitudes();
+
+      // Emitir evento al padre
+      this.solicitudEnviada.emit(nuevaSolicitud);
 
       Swal.fire({
         title: '¡Éxito!',

@@ -180,6 +180,12 @@
       <div class="col-md-7">
         <div class="solicitud-card card shadow p-4">
           <h3 class="solicitud-title mb-4 text-center">Solicitar Préstamo</h3>
+          <!-- Mostrar el nombre recibido por @Input -->
+          @if (nombrePadre) {
+            <div class="mb-3 text-center">
+              <span class="fw-bold">Bienvenido, {{nombrePadre}}.</span>
+            </div>
+          }
           <form (ngSubmit)="solicitarPrestamo()" autocomplete="off">
             <!-- Monto del Préstamo -->
             <div class="mb-3">
