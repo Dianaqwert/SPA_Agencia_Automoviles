@@ -1,4 +1,4 @@
-import { Component } from '@angular/core';
+import { Component, OnInit, ChangeDetectorRef } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { FormsModule } from '@angular/forms';
 import { RouterModule } from '@angular/router';
@@ -59,7 +59,7 @@ export class YoutubeEmbedPipe implements PipeTransform {
   templateUrl: './financiamiento.component.html',
   styleUrls: ['./financiamiento.component.css']
 })
-export class FinanciamientoComponent {
+export class FinanciamientoComponent implements OnInit {
   montoPrestamo: number = 50000;
   plazoMeses: number | undefined;
   tasaInteres: number = 12.9;
@@ -82,8 +82,16 @@ export class FinanciamientoComponent {
   envios: number = 0;
   solicitudes: any[] = [];
 
-  constructor(private snackBar: MatSnackBar) {
+  constructor(
+    private snackBar: MatSnackBar,
+    private cdr: ChangeDetectorRef
+  ) {
     this.cargarSolicitudes();
+  }
+
+  ngOnInit() {
+    // Inicializar el cálculo del financiamiento
+    this.calcularFinanciamiento();
   }
 
   cargarSolicitudes() {
@@ -204,13 +212,6 @@ export class FinanciamientoComponent {
     }
   }
 
-  // Reimplementar métodos requeridos por el template
-  validarMonto(monto: number) {
-    this.montoPrestamo = monto;
-    this.validarMontoPrestamo();
-    this.calcularFinanciamiento();
-  }
-
   calcularFinanciamiento() {
     if (this.montoPrestamo >= this.montoMinimo && this.plazoMeses) {
       const tasaMensual = this.tasaInteres / 100 / 12;
@@ -221,12 +222,21 @@ export class FinanciamientoComponent {
       this.pagoMensual = 0;
     }
     this.validarPagoMensual();
+    this.cdr.detectChanges();
+  }
+
+  validarMonto(monto: number) {
+    this.montoPrestamo = monto;
+    this.validarMontoPrestamo();
+    this.calcularFinanciamiento();
+    this.cdr.detectChanges();
   }
 
   actualizarPlazo(meses: number) {
     this.plazoMeses = meses;
     this.validarPlazo();
     this.calcularFinanciamiento();
+    this.cdr.detectChanges();
   }
 
   cambiarEstado(solicitud: any, nuevoEstado: string) {
