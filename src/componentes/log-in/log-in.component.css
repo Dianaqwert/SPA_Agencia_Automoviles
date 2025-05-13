@@ -72,3 +72,7 @@
   color: #e6952e; /* Naranja más oscuro al hover */
   text-decoration: underline;
 }
+
+.div{
+  font-family: "DM Sans", sans-serif;
+}
