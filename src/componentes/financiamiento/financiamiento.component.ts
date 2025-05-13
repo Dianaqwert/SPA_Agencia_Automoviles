@@ -1,4 +1,4 @@
-import { Component, OnInit, ChangeDetectorRef } from '@angular/core';
+import { Component, OnInit, ChangeDetectorRef, Input, Output, EventEmitter } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { FormsModule } from '@angular/forms';
 import { RouterModule } from '@angular/router';
@@ -81,6 +81,12 @@ export class FinanciamientoComponent implements OnInit {
   errorPagoMensual: string = '';
   envios: number = 0;
   solicitudes: any[] = [];
+
+  // Recibe el nombre del usuario desde el padre
+  @Input() nombrePadre: string = 'Rene';
+
+  // Emite un evento al padre cuando se envía la solicitud
+  @Output() solicitudEnviada = new EventEmitter<any>();
 
   constructor(
     private snackBar: MatSnackBar,
@@ -196,6 +202,9 @@ export class FinanciamientoComponent implements OnInit {
       this.envios++;
       this.cargarSolicitudes();
 
+      // Emitir evento al padre
+      this.solicitudEnviada.emit(nuevaSolicitud);
+
       Swal.fire({
         title: '¡Éxito!',
         text: 'Solicitud enviada con éxito',
@@ -212,13 +221,6 @@ export class FinanciamientoComponent implements OnInit {
     }
   }
 
-  // Reimplementar métodos requeridos por el template
-  validarMonto(monto: number) {
-    this.montoPrestamo = monto;
-    this.validarMontoPrestamo();
-    this.calcularFinanciamiento();
-  }
-
   calcularFinanciamiento() {
     if (this.montoPrestamo >= this.montoMinimo && this.plazoMeses) {
       const tasaMensual = this.tasaInteres / 100 / 12;
@@ -232,10 +234,18 @@ export class FinanciamientoComponent implements OnInit {
     this.cdr.detectChanges();
   }
 
+  validarMonto(monto: number) {
+    this.montoPrestamo = monto;
+    this.validarMontoPrestamo();
+    this.calcularFinanciamiento();
+    this.cdr.detectChanges();
+  }
+
   actualizarPlazo(meses: number) {
     this.plazoMeses = meses;
     this.validarPlazo();
     this.calcularFinanciamiento();
+    this.cdr.detectChanges();
   }
 
   cambiarEstado(solicitud: any, nuevoEstado: string) {

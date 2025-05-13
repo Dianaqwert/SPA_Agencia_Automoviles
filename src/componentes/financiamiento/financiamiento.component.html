@@ -72,7 +72,7 @@
         <div class="row">
           <!-- Requisitos -->
           <div class="col-md-6 mb-4">
-            <mat-card class="info-card">
+            <mat-card class="info-card bg-white">
               <mat-card-header>
                 <mat-icon class="icon-orange">assignment</mat-icon>
                 <mat-card-title>Requisitos</mat-card-title>
@@ -180,6 +180,12 @@
       <div class="col-md-7">
         <div class="solicitud-card card shadow p-4">
           <h3 class="solicitud-title mb-4 text-center">Solicitar Préstamo</h3>
+          <!-- Mostrar el nombre recibido por @Input -->
+          @if (nombrePadre) {
+            <div class="mb-3 text-center">
+              <span class="fw-bold">Bienvenido, {{nombrePadre}}.</span>
+            </div>
+          }
           <form (ngSubmit)="solicitarPrestamo()" autocomplete="off">
             <!-- Monto del Préstamo -->
             <div class="mb-3">
