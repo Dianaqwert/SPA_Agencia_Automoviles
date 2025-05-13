@@ -17,7 +17,7 @@ export class AutoService {
 
   //mostrar datos----------------------------------------------
   constructor(private http: HttpClient) {}
-  urlBase="https://spaautos6.free.beeceptor.com/autos";
+  urlBase="https://spaautos7.free.beeceptor.com/autos";
 
   retornar(){
     //return this.http.get(this.urlBase).pipe(take(1));
