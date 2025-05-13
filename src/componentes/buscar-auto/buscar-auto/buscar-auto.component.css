@@ -1,18 +1,3 @@
-div{
-  font-family: "DM Sans", sans-serif;
-}
-
-
-.c1{
-  background-repeat:no-repeat;
-  background-size: cover;
-  color: #FFA739;
-  background-position: center;
-}
-
-
-
-/*CATALOGO_____________________________________*/
 .card{
   cursor: pointer;
 }
@@ -34,4 +19,13 @@ div{
 .card:hover {
   transform: scale(1.05);
   z-index: 10;
+}
+
+.titulo{
+    font-size: 5rem;
+    font-weight: bold;
+    color: #FFA739;
+}
+h2{
+    font-size: 3rem;
 }

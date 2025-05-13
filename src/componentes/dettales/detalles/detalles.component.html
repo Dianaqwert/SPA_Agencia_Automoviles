@@ -1,0 +1,79 @@
+
+@if(auto.id!=0){ 
+   <div class="container mt-4">
+        <h1 class="display-3 fw-bold">{{auto.modelo}} {{auto.marca}}</h1> 
+        <div class="d-flex justify-content-center">
+            
+            <div class="card mb-3">
+                <div class="row g-0">
+                    <!-- Imagen (ahora ocupa 7 de 12 columnas) -->
+                    <div class="col-md-7">
+                    <img 
+                        [src]="auto.fuente_img" 
+                        class="img-fluid rounded-start h-100 w-100" 
+                        alt="{{ auto.marca }}">
+                    </div>
+                    
+                    <!-- Texto -->
+                    <div class="col-md-5 d-flex align-items-center">
+                        <div class="card-body">
+                            <h4 class="card-title">Características</h4>
+                            <p class="card-text">{{auto.descripcion}}</p>
+                            <p class="card-text"><small class="text-muted">Last updated 3 mins ago</small></p>
+                            <p class="card-text"><strong>Precio:</strong> ${{ auto.precio }}.00 pesos mexicanos</p>
+                            <p class="card-text"><strong>Año:</strong> {{ auto.anio }}</p>
+                            <p class="card-text"><strong>Transmisión:</strong> {{ auto.transmision }}</p>
+                            <p class="card-text"><strong>Kilometraje:</strong> {{ auto.kilometraje }}</p>
+                            <p class="card-text"><strong>Color:</strong> {{ auto.color }}</p>
+                            <p class="card-text"><strong>Pasajeros recomendados:</strong> {{ auto.pasajeros }}</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+           
+            <!--angular material-->
+            <div class="check mt-3">
+                @if (auto.ofertas && auto.oportunidades) {
+                    <div class="details">
+                        <h6>Detalles especiales</h6>
+                        <mat-chip-listbox class="mat-mdc-chip-set-stacked" aria-label="Etiquetas del auto">
+                            <mat-chip-option selected disabled class="chip-oferta">Oferta</mat-chip-option>
+                            <mat-chip-option selected disabled class="chip-oportunidad">Oportunidad de financiamiento</mat-chip-option>
+                        </mat-chip-listbox>
+                    </div>
+                       
+
+                }@else if (auto.oportunidades) {
+                    <div class="details">
+                        <h6>Detalles especiales</h6>
+                        <mat-chip-listbox class="mat-mdc-chip-set-stacked" aria-label="Etiquetas del auto">
+                            <mat-chip-option selected disabled class="chip-oportunidad">Oportunidad de financiamiento</mat-chip-option>
+                        </mat-chip-listbox>
+                    </div>
+                }@else if(auto.ofertas){
+                    <div class="details">
+                        <h6>Detalles especiales</h6>
+                        <mat-chip-listbox class="mat-mdc-chip-set-stacked" aria-label="Etiquetas del auto">
+                            <mat-chip-option selected disabled class="chip-oferta">Oferta</mat-chip-option>
+                        </mat-chip-listbox>
+                    </div>
+                }
+            </div>
+
+        </div>
+    </div>   
+    
+    <!--boton-->
+    <div class="text-center mt-4">
+        <button type="button" class="btn btn-1 btn-lg" (click)="regresarCat()">
+            Regresar al catálogo
+        </button>
+    </div>
+
+
+      
+}@else {
+    <div>
+        no jalo 
+    </div>
+}

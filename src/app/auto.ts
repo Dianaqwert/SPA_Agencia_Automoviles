@@ -1,6 +1,7 @@
 
 export interface Auto {
   id: number;
+  descripcion:string,
   ofertas: boolean;
   oportunidades: boolean;
   marca: string;
