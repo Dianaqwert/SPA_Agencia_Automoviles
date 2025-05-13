@@ -145,92 +145,11 @@
       }
 
       @if (selectedRegistro) {
-        <!-- Formulario de edición -->
-        <div class="edit-form-container">
-          <h3 class="edit-title">Editar Registro</h3>
-          <form class="edit-form">
-            <div class="form-row">
-              <mat-form-field class="form-field">
-                <mat-label>Número de Registro</mat-label>
-                <input matInput [(ngModel)]="selectedRegistro.id" name="id" readonly>
-              </mat-form-field>
-
-              <mat-form-field class="form-field">
-                <mat-label>Fecha de Registro</mat-label>
-                <input matInput [(ngModel)]="selectedRegistro.fechaDeRegistro" name="fechaDeRegistro" readonly>
-              </mat-form-field>
-            </div>
-
-            <div class="form-row">
-              <mat-form-field class="form-field">
-                <mat-label>Nombre</mat-label>
-                <input matInput [(ngModel)]="selectedRegistro.nombre" name="nombre">
-              </mat-form-field>
-
-              <mat-form-field class="form-field">
-                <mat-label>Apellidos</mat-label>
-                <input matInput [(ngModel)]="selectedRegistro.apellidos" name="apellidos">
-              </mat-form-field>
-            </div>
-
-            <div class="form-row">
-              <mat-form-field class="form-field">
-                <mat-label>Nombre de Usuario</mat-label>
-                <input matInput [(ngModel)]="selectedRegistro.username" name="username">
-              </mat-form-field>
-
-              <mat-form-field class="form-field">
-                <mat-label>Email</mat-label>
-                <input matInput [(ngModel)]="selectedRegistro.email" name="email">
-              </mat-form-field>
-            </div>
-
-            <div class="form-row">
-              <mat-form-field class="form-field">
-                <mat-label>Dirección</mat-label>
-                <input matInput [(ngModel)]="selectedRegistro.direccion" name="direccion">
-              </mat-form-field>
-
-              <mat-form-field class="form-field">
-                <mat-label>Código Postal</mat-label>
-                <input matInput [(ngModel)]="selectedRegistro.cp" name="cp">
-              </mat-form-field>
-            </div>
-
-            <div class="form-row">
-              <mat-form-field class="form-field">
-                <mat-label>Fecha de Cita</mat-label>
-                <input matInput [(ngModel)]="selectedRegistro.fechaCita" name="fechaCita">
-              </mat-form-field>
-
-              <mat-form-field class="form-field">
-                <mat-label>Servicio Solicitado</mat-label>
-                <input matInput [(ngModel)]="selectedRegistro.servicios" name="servicios">
-              </mat-form-field>
-            </div>
-
-            <div class="form-row">
-              <mat-form-field class="form-field">
-                <mat-label>Estado</mat-label>
-                <input matInput [(ngModel)]="selectedRegistro.estado" name="estado">
-              </mat-form-field>
-
-              <mat-form-field class="form-field">
-                <mat-label>Nivel de Urgencia</mat-label>
-                <input matInput [(ngModel)]="selectedRegistro.urgencia" name="urgencia">
-              </mat-form-field>
-            </div>
-
-            <div class="form-actions">
-              <button mat-raised-button class="save-btn" (click)="guardarCambios()">
-                Guardar
-              </button>
-              <button mat-raised-button class="cancel-btn" (click)="cancelarEdicion()">
-                Cancelar
-              </button>
-            </div>
-          </form>
-        </div>
+        <app-registro-editor
+          [registro]="selectedRegistro"
+          (guardar)="guardarCambios($event)"
+          (cancelar)="cancelarEdicion()">
+        </app-registro-editor>
       }
     </mat-card-content>
   </mat-card>

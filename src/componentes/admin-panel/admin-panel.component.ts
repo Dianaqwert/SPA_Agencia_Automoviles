@@ -12,6 +12,8 @@ import { MatFormFieldModule } from '@angular/material/form-field';
 import { MatInputModule } from '@angular/material/input';
 import { FormsModule } from '@angular/forms';
 import { MatTableDataSource } from '@angular/material/table';
+import { MatTooltipModule } from '@angular/material/tooltip';
+import { RegistroEditorComponent } from './registro-editor/registro-editor.component';
 import Swal from 'sweetalert2';
 
 @Component({
@@ -28,7 +30,9 @@ import Swal from 'sweetalert2';
     MatSortModule,
     MatFormFieldModule,
     MatInputModule,
-    FormsModule
+    FormsModule,
+    MatTooltipModule,
+    RegistroEditorComponent
   ],
   templateUrl: './admin-panel.component.html',
   styleUrl: './admin-panel.component.css'
@@ -55,7 +59,6 @@ export class AdminPanelComponent implements OnInit {
     'urgencia'
   ];
   solicitudes: any[] = [];
-
   
   dataSource = new MatTableDataSource<any>([]);
   selectedRegistro: any = null;
@@ -67,12 +70,10 @@ export class AdminPanelComponent implements OnInit {
       const user = JSON.parse(currentUser);
       this.userNombreP = user.fullName;
       this.cargarSolicitudes();
-
     }
   }
 
   ngOnInit() {
-    // Verificar si hay una sesión activa
     const currentUser = localStorage.getItem('currentUser');
     if (!currentUser) {
       this.router.navigate(['/log-in']);
@@ -128,16 +129,14 @@ export class AdminPanelComponent implements OnInit {
     });
   }
 
-  guardarCambios() {
-    if (this.selectedRegistro) {
-      const index = this.dataSource.data.findIndex(r => r.id === this.selectedRegistro.id);
-      if (index !== -1) {
-        this.dataSource.data[index] = { ...this.selectedRegistro };
-        localStorage.setItem('registroFormulario', JSON.stringify(this.dataSource.data));
-        this.selectedRegistro = null;
-        this.selectedRowIndex = -1;
-        this.cargarDatos();
-      }
+  guardarCambios(registro: any) {
+    const index = this.dataSource.data.findIndex(r => r.id === registro.id);
+    if (index !== -1) {
+      this.dataSource.data[index] = { ...registro };
+      localStorage.setItem('registroFormulario', JSON.stringify(this.dataSource.data));
+      this.selectedRegistro = null;
+      this.selectedRowIndex = -1;
+      this.cargarDatos();
     }
   }
 
@@ -146,7 +145,6 @@ export class AdminPanelComponent implements OnInit {
     this.selectedRowIndex = -1;
   }
 
-  // Método para filtrar la tabla
   aplicarFiltro(event: Event) {
     const filterValue = (event.target as HTMLInputElement).value;
     this.dataSource.filter = filterValue.trim().toLowerCase();
@@ -156,13 +154,11 @@ export class AdminPanelComponent implements OnInit {
     }
   }
 
-  // Método para manejar la selección de fila
   seleccionarFila(index: number) {
     this.selectedRowIndex = index;
     this.editarRegistro(this.dataSource.data[index]);
   }
 
-  // Método para cerrar sesión
   cerrarSesion() {
     Swal.fire({
       title: '¿Cerrar sesión?',
@@ -188,11 +184,9 @@ export class AdminPanelComponent implements OnInit {
     });
   }
 
-
   cargarSolicitudes() {
     this.solicitudes = JSON.parse(localStorage.getItem('solicitudesFinanciamiento') || '[]');
   }
-
 
   cambiarEstado(solicitud: any, nuevoEstado: string) {
     solicitud.estado = nuevoEstado;
