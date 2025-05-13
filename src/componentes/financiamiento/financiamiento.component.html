@@ -1,0 +1,315 @@
+<div class="container-fluid financiamiento-container" style="font-family: DM Sans, sans-serif; ">
+  <div class="container">
+    <!-- Encabezado -->
+    <div class="text-center">
+      <h1 class="display-4 financiamiento-title">Financiamiento</h1>
+      <p class="financiamiento-subtitle">Calcula tu financiamiento y encuentra el plan perfecto para ti</p>
+    </div>
+
+    <div class="row">
+      <!-- Calculadora -->
+      <div class="col-lg-6 mb-4">
+        <mat-card class="calculadora-card">
+          <mat-card-header>
+            <mat-card-title class="text-center w-100">Calculadora de Financiamiento</mat-card-title>
+          </mat-card-header>
+          <mat-card-content class="p-4">
+            <!-- Monto del préstamo -->
+            <mat-form-field class="w-100 mb-4">
+              <mat-label>Monto del Préstamo</mat-label>
+              <span matPrefix>$&nbsp;</span>
+              <input matInput
+                type="number"
+                [(ngModel)]="montoPrestamo"
+                (input)="validarMonto(montoPrestamo)"
+                min="50000"
+                placeholder="Monto mínimo $50,000">
+              @if (errorMonto) {
+                <mat-error>{{errorMonto}}</mat-error>
+              }
+            </mat-form-field>
+
+            <!-- Plazo -->
+            <div class="mb-4">
+              <mat-label>Plazo de Financiamiento</mat-label>
+              <div class="d-flex gap-2 mt-2">
+                @for (plazo of [24, 36, 48, 60]; track plazo) {
+                  <button mat-raised-button
+                    [color]="plazoMeses === plazo ? 'primary' : 'basic'"
+                    (click)="actualizarPlazo(plazo)">
+                    {{plazo}} meses
+                  </button>
+                }
+              </div>
+            </div>
+
+            <!-- Tasa de interés -->
+            <mat-form-field class="w-100 mb-4">
+              <mat-label>Tasa de Interés Anual</mat-label>
+              <input matInput
+                type="number"
+                [(ngModel)]="tasaInteres"
+                readonly>
+              <span matSuffix>%</span>
+            </mat-form-field>
+
+            <!-- Resultado -->
+            @if (pagoMensual > 0) {
+              <mat-card class="alert-payment mb-4">
+                <mat-card-content>
+                  <h4 class="alert-heading">Pago Mensual Estimado a {{plazoMeses}} meses</h4>
+                  <p class="mb-0 fs-4">{{pagoMensual | currency:'MXN':'symbol':'1.2-2'}}</p>
+                </mat-card-content>
+              </mat-card>
+            }
+
+          </mat-card-content>
+        </mat-card>
+      </div>
+
+      <!-- Información Adicional -->
+      <div class="col-lg-6">
+        <div class="row">
+          <!-- Requisitos -->
+          <div class="col-md-6 mb-4">
+            <mat-card class="info-card">
+              <mat-card-header>
+                <mat-icon class="icon-orange">assignment</mat-icon>
+                <mat-card-title>Requisitos</mat-card-title>
+              </mat-card-header>
+              <mat-card-content class="p-4">
+                <mat-list>
+                  <mat-list-item>
+                    <mat-icon matListItemIcon class="icon-orange">check_circle</mat-icon>
+                    <span matListItemTitle>Identificación oficial vigente</span>
+                  </mat-list-item>
+                  <mat-list-item>
+                    <mat-icon matListItemIcon class="icon-orange">check_circle</mat-icon>
+                    <span matListItemTitle>Comprobante de ingresos</span>
+                  </mat-list-item>
+                  <mat-list-item>
+                    <mat-icon matListItemIcon class="icon-orange">check_circle</mat-icon>
+                    <span matListItemTitle>Comprobante de domicilio</span>
+                  </mat-list-item>
+                  <mat-list-item>
+                    <mat-icon matListItemIcon class="icon-orange">check_circle</mat-icon>
+                    <span matListItemTitle>Historial crediticio</span>
+                  </mat-list-item>
+                </mat-list>
+              </mat-card-content>
+            </mat-card>
+          </div>
+
+          <!-- Beneficios -->
+          <div class="col-md-6 mb-4">
+            <mat-card class="info-card">
+              <mat-card-header>
+                <mat-icon class="icon-orange">star</mat-icon>
+                <mat-card-title>Beneficios</mat-card-title>
+              </mat-card-header>
+              <mat-card-content class="p-4">
+                <mat-list>
+                  <mat-list-item>
+                    <mat-icon matListItemIcon class="icon-orange">check_circle</mat-icon>
+                    <span matListItemTitle>Tasas competitivas</span>
+                  </mat-list-item>
+                  <mat-list-item>
+                    <mat-icon matListItemIcon class="icon-orange">check_circle</mat-icon>
+                    <span matListItemTitle>Plazos flexibles</span>
+                  </mat-list-item>
+                  <mat-list-item>
+                    <mat-icon matListItemIcon class="icon-orange">check_circle</mat-icon>
+                    <span matListItemTitle>Proceso rápido</span>
+                  </mat-list-item>
+                  <mat-list-item>
+                    <mat-icon matListItemIcon class="icon-orange">check_circle</mat-icon>
+                    <span matListItemTitle>Sin penalización por pago anticipado</span>
+                  </mat-list-item>
+                </mat-list>
+              </mat-card-content>
+            </mat-card>
+          </div>
+
+          <!-- Proceso -->
+          <div class="col-12">
+            <mat-card class="info-card">
+              <mat-card-header>
+                <mat-icon class="icon-orange">settings</mat-icon>
+                <mat-card-title>Proceso de Financiamiento</mat-card-title>
+              </mat-card-header>
+              <mat-card-content class="p-4">
+                <div class="row text-center">
+                  <div class="col-md-3 mb-3">
+                    <div class="process-container">
+                      <div class="process-number">1</div>
+                      <h5 class="process-step">Solicitud</h5>
+                      <p class="process-description">Completa el formulario</p>
+                    </div>
+                  </div>
+                  <div class="col-md-3 mb-3">
+                    <div class="process-container">
+                      <div class="process-number">2</div>
+                      <h5 class="process-step">Revisión</h5>
+                      <p class="process-description">Evaluación de documentos</p>
+                    </div>
+                  </div>
+                  <div class="col-md-3 mb-3">
+                    <div class="process-container">
+                      <div class="process-number">3</div>
+                      <h5 class="process-step">Aprobación</h5>
+                      <p class="process-description">Respuesta en 24 horas</p>
+                    </div>
+                  </div>
+                  <div class="col-md-3 mb-3">
+                    <div class="process-container">
+                      <div class="process-number">4</div>
+                      <h5 class="process-step">Entrega</h5>
+                      <p class="process-description">Firma de contrato</p>
+                    </div>
+                  </div>
+                </div>
+              </mat-card-content>
+            </mat-card>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- Formulario de Solicitud de Préstamo -->
+    <div class="row justify-content-center mt-5">
+      <div class="col-md-7">
+        <div class="solicitud-card card shadow p-4">
+          <h3 class="solicitud-title mb-4 text-center">Solicitar Préstamo</h3>
+          <form (ngSubmit)="solicitarPrestamo()" autocomplete="off">
+            <!-- Monto del Préstamo -->
+            <div class="mb-3">
+              <label class="form-label">Monto del Préstamo</label>
+              <div class="input-group">
+                <span class="input-group-text">$</span>
+                <input type="number" class="form-control" [value]="montoPrestamo" disabled [ngStyle]="{'background-color': '#e9ecef'}">
+              </div>
+              @if ((formSubmitted || errorMontoPrestamo) && errorMontoPrestamo) {
+                <div class="solicitud-error text-danger small mt-1">{{errorMontoPrestamo}}</div>
+              }
+            </div>
+
+            <!-- Plazo de Financiamiento -->
+            <div class="mb-3">
+              <label class="form-label">Plazo de Financiamiento</label>
+              <input type="text" class="form-control" [value]="plazoMeses ? plazoMeses + ' meses' : 'Selecciona un plazo'" disabled [ngStyle]="{'background-color': '#e9ecef'}">
+              @if ((formSubmitted || errorPlazo) && errorPlazo) {
+                <div class="solicitud-error text-danger small mt-1">{{errorPlazo}}</div>
+              }
+            </div>
+
+            <!-- Pago Mensual Estimado -->
+            <div class="mb-3">
+              <label class="form-label">Pago Mensual Estimado</label>
+              <input type="text" class="form-control" [value]="pagoMensual | currency:'MXN':'symbol':'1.2-2'" disabled [ngStyle]="{'background-color': '#e9ecef'}">
+              @if ((formSubmitted || errorPagoMensual) && errorPagoMensual) {
+                <div class="solicitud-error text-danger small mt-1">{{errorPagoMensual}}</div>
+              }
+            </div>
+
+            <!-- Teléfono -->
+            <div class="mb-3">
+              <label class="form-label">Teléfono</label>
+              <input type="tel" class="form-control" [(ngModel)]="telefono" name="telefono" maxlength="10" minlength="10" pattern="[0-9]{10}" required (input)="validarTelefono()">
+              @if ((formSubmitted || telefono) && errorTelefono) {
+                <div class="solicitud-error text-danger small mt-1">{{errorTelefono}}</div>
+              }
+            </div>
+
+            <!-- Nombre de Usuario -->
+            <div class="mb-3">
+              <label class="form-label">Nombre de Usuario</label>
+              <input type="text" class="form-control" [(ngModel)]="nombreUsuario" name="nombreUsuario" minlength="3" required (input)="validarNombreUsuario()">
+              @if ((formSubmitted || nombreUsuario) && errorNombreUsuario) {
+                <div class="solicitud-error text-danger small mt-1">{{errorNombreUsuario}}</div>
+              }
+            </div>
+
+            <button type="submit" class="solicitud-btn btn btn-primary w-100" [disabled]="!formularioValido()">
+              Solicitar Préstamo
+            </button>
+          </form>
+        </div>
+      </div>
+    </div>
+
+    <!-- Resumen de Solicitudes -->
+    <div class="row justify-content-center mt-5">
+      <div class="col-md-10">
+        <mat-card class="resumen-card">
+          <mat-card-header>
+            <mat-icon class="icon-orange">list_alt</mat-icon>
+            <mat-card-title>Resumen de Solicitudes</mat-card-title>
+          </mat-card-header>
+          <mat-card-content>
+            @if (solicitudes.length > 0) {
+              <div class="table-responsive">
+                <table class="table">
+                  <thead>
+                    <tr>
+                      <th>Usuario</th>
+                      <th>Monto</th>
+                      <th>Plazo</th>
+                      <th>Pago Mensual</th>
+                      <th>Teléfono</th>
+                      <th>Fecha</th>
+                      <th>Acción</th>
+                    </tr>
+                  </thead>
+                  <tbody>
+                    @for (solicitud of solicitudes; track solicitud.fecha) {
+                      <tr [ngClass]="{'table-success': solicitud.estado === 'aprobado', 'table-danger': solicitud.estado === 'rechazado'}">
+                        <td>{{solicitud.nombreUsuario}}</td>
+                        <td>{{solicitud.montoPrestamo | currency:'MXN':'symbol':'1.2-2'}}</td>
+                        <td>{{solicitud.plazoMeses}} meses</td>
+                        <td>{{solicitud.pagoMensual | currency:'MXN':'symbol':'1.2-2'}}</td>
+                        <td>{{solicitud.telefono}}</td>
+                        <td>{{solicitud.fecha}}</td>
+                        <td>
+                          @if (solicitud.estado === 'pendiente' || !solicitud.estado) {
+                            <button mat-icon-button color="primary" (click)="cambiarEstado(solicitud, 'aprobado')" matTooltip="Aprobar">
+                              <mat-icon>check_circle</mat-icon>
+                            </button>
+                            <button mat-icon-button color="warn" (click)="cambiarEstado(solicitud, 'rechazado')" matTooltip="Rechazar">
+                              <mat-icon>cancel</mat-icon>
+                            </button>
+                          } @else if (solicitud.estado === 'aprobado') {
+                            <mat-icon class="text-success">check_circle</mat-icon>
+                          } @else if (solicitud.estado === 'rechazado') {
+                            <mat-icon class="text-danger">cancel</mat-icon>
+                          }
+                        </td>
+                      </tr>
+                    }
+                  </tbody>
+                </table>
+              </div>
+            } @else {
+              <p class="text-center text-muted my-4">No hay solicitudes registradas</p>
+            }
+          </mat-card-content>
+        </mat-card>
+      </div>
+    </div>
+
+    <div class="video-container">
+      <h3 class="video-title">Conoce más sobre nuestro financiamiento</h3>
+      <div class="video-wrapper">
+        <iframe
+          [src]="videoUrl | youtubeEmbed"
+          frameborder="0"
+          allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
+          allowfullscreen>
+        </iframe>
+      </div>
+    </div>
+  </div>
+</div>
+
+
+
+
