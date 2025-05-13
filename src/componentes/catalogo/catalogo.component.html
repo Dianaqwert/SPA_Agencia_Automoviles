@@ -6,12 +6,18 @@
     </div> 
 </div>
 
+<!--busqueda-->
+<div>
+  <app-buscar-auto></app-buscar-auto>
+</div>
+
+<!--Mostrar catalogo-->
 @if (array.length > 0) {
   <div class="row row-cols-1 row-cols-md-3 g-4">
     @for (auto of array; track auto.id) {
       <div class="col">
-        <div class="card h-100 shadow-sm">
-          <img src="https://source.unsplash.com/400x300/?car" class="card-img-top" alt="{{ auto.marca }} {{ auto.modelo }}">
+        <div class="card h-100 shadow-sm" (click)="verDetalle(auto.id)">
+          <img [src]="[auto.fuente_img]" class="card-img-top" alt="{{ auto.marca }} {{ auto.modelo }}">
           <div class="card-body">
             <h5 class="card-title">{{ auto.marca }} {{ auto.modelo }}</h5>
             <p class="card-text">
@@ -22,11 +28,16 @@
                 <span class="badge bg-warning text-dark">Oportunidad</span>
               }
             </p>
+            <h6 class="card-text">
+                <strong>Precio : {{auto.precio}}.00</strong>
+            </h6>
           </div>
         </div>
       </div>
     }
   </div>
 } @else {
-  <p>No hay autos disponibles.</p>
+    <div class="alert alert-info">
+        <p>No hay autos disponibles , la api fallo .</p>
+    </div>
 }

@@ -1,0 +1,64 @@
+
+<div class="container-fluid d-flex justify-content-center mb-5" style="max-width: 600px;">
+  <form class="d-flex w-100" (ngSubmit)="buscar()" role="search">
+    <input
+      [(ngModel)]="modeloBuscado"
+      name="modeloBuscado"
+      class="form-control me-2"
+      type="search"
+      placeholder="¿Qué estás buscando?"
+      aria-label="Search"
+      style="padding: 15px;"
+    />
+    <button
+      class="btn btn-primary"
+      type="submit"
+      [disabled]="!modeloBuscado.trim()"
+    >
+      Buscar
+    </button>
+  </form>
+</div>
+
+<div class="container">
+  <div class="row justify-content-center">
+    @if (busquedaRealizada && autosEncontrados.length > 0) {
+      @for (auto of autosEncontrados; track autosEncontrados) {
+        <div class="card text-bg-dark mb-4" style="height: 500px; position: relative; overflow: hidden;" (click)="verDetalle(auto.id)">
+          <img 
+            [src]="auto.fuente_img" 
+            class="card-img"  
+            style="object-fit: cover; width: 100%; height: 100%; position: absolute; top: 0; left: 0; z-index: 1;">
+          <div class="card-img-overlay" style="z-index: 2; position: relative;"> 
+            <h1 class="card-title titulo">{{ auto.marca }} {{ auto.modelo }}</h1>
+            <h3 class="card-text">
+              @if (auto.ofertas) {
+                <span class="badge bg-success me-1">Oferta</span>
+              }
+              @if (auto.oportunidades) {
+                <span class="badge bg-warning text-dark">Oportunidad</span>
+              }
+            </h3>
+            <h2 class="card-text">
+              <strong style="color:#FCE07F">Precio: {{ auto.precio }}.00</strong>
+            </h2>
+            <p class="card-text"><small>Last updated 3 mins ago</small></p>
+          </div>
+        </div>
+        <hr>
+        <h1>Otros modelos</h1>
+      }
+
+    } @else if (busquedaRealizada && modeloBuscado.trim()) {
+      <div class="text-center mt-4">
+        <div class="alert alert-warning" role="alert">
+          No se encontraron resultados del modelo {{modeloBuscado}}. Intenta con otro modelo.
+        </div>
+      </div>
+      <hr>
+      <h1>Otros modelos</h1>
+    }
+  </div>
+</div>
+
+

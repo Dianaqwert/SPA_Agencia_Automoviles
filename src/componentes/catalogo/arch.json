@@ -1,0 +1,193 @@
+{
+  "autos": [
+    {
+      "id": 1,
+      "descripcion": "La Toyota RAV4 2022 combina estilo, tecnología y seguridad en un SUV ideal para familias modernas. Con solo 15,000 km, está casi como nueva.",
+      "ofertas": true,
+      "oportunidades": false,
+      "marca": "Toyota",
+      "modelo": "RAV4",
+      "anio": 2022,
+      "precio": 520000,
+      "tipo_auto": "SUV",
+      "transmision": "Automática",
+      "kilometraje": 15000,
+      "color": "Blanco",
+      "pasajeros": 5,
+      "fuente_img": [
+        "https://www.elcarrocolombiano.com/wp-content/uploads/2019/03/20190323-TOYOTA-RAV4-2020-COLOMBIA-PRECIOS-VERSIONES-CARACTERISTICAS-01.jpg"
+      ]
+    },
+    {
+      "id": 2,
+      "descripcion": "La Honda CR-V 2021 ofrece confort, eficiencia y un diseño elegante. Es perfecta para quienes buscan un SUV confiable con bajo kilometraje.",
+
+      "ofertas": false,
+      "oportunidades": true,
+      "marca": "Honda",
+      "modelo": "CR-V",
+      "anio": 2021,
+      "precio": 480000,
+      "tipo_auto": "SUV",
+      "transmision": "Automática",
+      "kilometraje": 20000,
+      "color": "Gris",
+      "pasajeros": 5,
+      "fuente_img": [
+        "https://img.remediosdigitales.com/cdb9ac/honda-cr-v-2020_/1366_2000.jpg"
+      ]
+    },
+    {
+      "id": 3,
+        "descripcion": "La Mazda CX-5 2020 destaca por su diseño deportivo, manejo ágil y excelente equipamiento. Ideal para viajes urbanos y carretera.",
+
+      "ofertas": true,
+      "oportunidades": true,
+      "marca": "Mazda",
+      "modelo": "CX-5",
+      "anio": 2020,
+      "precio": 450000,
+      "tipo_auto": "SUV",
+      "transmision": "Automática",
+      "kilometraje": 25000,
+      "color": "Rojo",
+      "pasajeros": 5,
+      "fuente_img": [
+        "https://alciautosmazda.com/wp-content/uploads/2019/09/mazda-cx5-lateral-frente.jpg"
+      ]
+    },
+    {
+      "id": 4,
+      "descripcion": "La Ford Escape 2019 es una SUV versátil, con gran espacio interior y desempeño equilibrado. Una excelente opción para la familia.",
+
+      "ofertas": false,
+      "oportunidades": false,
+      "marca": "Ford",
+      "modelo": "Escape",
+      "anio": 2019,
+      "precio": 400000,
+      "tipo_auto": "SUV",
+      "transmision": "Automática",
+      "kilometraje": 30000,
+      "color": "Azul",
+      "pasajeros": 5,
+      "fuente_img": [
+        "https://mexicoindustry.com/admin/images/notas/2023/06/ford-escape-llega-a-mexico-ofreciendo-su-esencia-hibrida-y-espiritu-deportivo-19002.jpg"
+      ]
+    },
+    {
+      "id": 5,
+      "descripcion": "La Hyundai Tucson 2022 luce moderna y con gran eficiencia. Su bajo kilometraje y diseño hacen de esta SUV una excelente compra.",
+
+      "ofertas": true,
+      "oportunidades": false,
+      "marca": "Hyundai",
+      "modelo": "Tucson",
+      "anio": 2022,
+      "precio": 510000,
+      "tipo_auto": "SUV",
+      "transmision": "Automática",
+      "kilometraje": 10000,
+      "color": "Negro",
+      "pasajeros": 5,
+      "fuente_img": [
+        "https://www.autoasesor.com/hyundai/imagenes/tucson2023.jpg"
+      ]
+    },
+    {
+      "id": 6,
+      "descripcion": "La Chevrolet Equinox 2021 combina comodidad y tecnología en un diseño refinado. Ideal para quienes buscan estilo y seguridad.",
+
+      "ofertas": false,
+      "oportunidades": true,
+      "marca": "Chevrolet",
+      "modelo": "Equinox",
+      "anio": 2021,
+      "precio": 470000,
+      "tipo_auto": "SUV",
+      "transmision": "Automática",
+      "kilometraje": 18000,
+      "color": "Blanco",
+      "pasajeros": 5,
+      "fuente_img": [
+        "https://chevroletacuna.com/equinox/img/blanco.webp"
+      ]
+    },
+    {
+      "id": 7,
+      "descripcion": "La Nissan Rogue 2020 es un SUV compacto, cómodo y con gran rendimiento. Perfecta para quienes buscan economía y funcionalidad.",
+
+      "ofertas": true,
+      "oportunidades": true,
+      "marca": "Nissan",
+      "modelo": "Rogue",
+      "anio": 2020,
+      "precio": 440000,
+      "tipo_auto": "SUV",
+      "transmision": "Automática",
+      "kilometraje": 22000,
+      "color": "Gris",
+      "pasajeros": 5,
+      "fuente_img": [
+        "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcSgyzGJwGB5yURopcYkAAZgxlI1ENhW8ppQ35tjeR8nIQ&s&ec=72940543"
+      ]
+    },
+    {
+      "id": 8,
+      "descripcion": "La Kia Sportage 2019 ofrece una conducción cómoda y diseño dinámico. Una SUV práctica y espaciosa para el día a día.",
+
+      "ofertas": false,
+      "oportunidades": false,
+      "marca": "Kia",
+      "modelo": "Sportage",
+      "anio": 2019,
+      "precio": 390000,
+      "tipo_auto": "SUV",
+      "transmision": "Automática",
+      "kilometraje": 35000,
+      "color": "Rojo",
+      "pasajeros": 5,
+      "fuente_img": [
+        "https://motor.elpais.com/wp-content/uploads/imagenes/2015/08/28/portada/1440750231_578959_1440750272_noticia_grande-700x368.jpg"
+      ]
+    },
+    {
+      "id": 9,
+      "descripcion": "La Subaru Forester 2022 es reconocida por su tracción en las cuatro ruedas y su fiabilidad. Perfecta para quienes aman la aventura.",
+
+      "ofertas": true,
+      "oportunidades": false,
+      "marca": "Subaru",
+      "modelo": "Forester",
+      "anio": 2022,
+      "precio": 530000,
+      "tipo_auto": "SUV",
+      "transmision": "Automática",
+      "kilometraje": 12000,
+      "color": "Verde",
+      "pasajeros": 5,
+      "fuente_img": [
+        "https://blogger.googleusercontent.com/img/b/R29vZ2xl/AVvXsEjlfHz8Ch8rO6rAsQO1298B_eHkgIrGKBq7Y3SLSnNNxk9yfp9Dt3-_e-uECqPUNewQE13Hq2aHz708qTeDEi6B-3kp6NV2oQ4Hw2GGYY2c78lqm_X1L0YUotbaZ9Upyv4ChjdoFmgRF90/s1600/NUEVO+FORESTER+ECO+HYBRID+EXTERIOR+MATRICULA+ESPAN%25CC%2583OLA+%252849%2529+2.jpeg"
+      ]
+    },
+    {
+      "id": 10,
+        "descripcion": "La Volkswagen Tiguan 2021 brinda confort europeo, gran espacio y desempeño sólido. Ideal para familias o quienes valoran la calidad.",
+
+      "ofertas": false,
+      "oportunidades": true,
+      "marca": "Volkswagen",
+      "modelo": "Tiguan",
+      "anio": 2021,
+      "precio": 460000,
+      "tipo_auto": "SUV",
+      "transmision": "Automática",
+      "kilometraje": 19000,
+      "color": "Azul",
+      "pasajeros": 5,
+      "fuente_img": [
+        "https://assets.volkswagen.com/is/image/volkswagenag/vw-tiguan-trendline-2025?Zml0PWNyb3AsMSZmbXQ9cG5nJndpZD04MDAmYWxpZ249MC4wMCwwLjAwJmJmYz1vZmYmYzRiMA=="
+      ]
+    }
+  ]
+}
