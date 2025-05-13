@@ -14,8 +14,8 @@ import Swal from 'sweetalert2';
 export class LogInComponent implements OnInit {
   adminAccounts = [
     { username: 'adminRene', password: '1234', fullName: 'Rene De Anda' },
-    { username: 'admin2', password: 'abcd', fullName: 'Administrador Dos' },
-    { username: 'admin3', password: 'pass', fullName: 'Administrador Tres' }
+    { username: 'adminDG', password: 'abcd', fullName: 'Diana González' },
+    { username: 'adminTowers', password: 'pass', fullName: 'Miguel Angel ' }
   ];
   
   username: string = '';
