@@ -17,10 +17,7 @@
                 <h4 class="title-text">Mantenimiento preventivo</h4>
                 <p class="card-text">Revisiones periódicas para garantizar el buen funcionamiento del coche.</p>
                 <div class="d-flex justify-content-between align-items-center">
-                <!--div class="btn-group">
-                    <button type="button" class="btn btn-sm btn-outline-secondary">View</button>
-                    <button type="button" class="btn btn-sm btn-outline-secondary">Edit</button>
-                </div-->
+                
                 <small class="text-body-secondary">Raeda Cars</small>
                 </div>
             </div>
@@ -183,9 +180,11 @@
                         }
 
                         <!--ngClass-->
+                        <!--1) muestra el mensaje (display: block)
+                        2) no muestra el mensaje (display: none) -->
                         <div  class="invalid-feedback"
                             [ngClass]="{
-                                'd-block': form.get('nombre')?.hasError('minlength') && form.get('nombre')?.touched,
+                                'd-block': form.get('nombre')?.hasError('minlength') && form.get('nombre')?.touched, 
                                 'd-none': !(form.get('nombre')?.hasError('minlength') && form.get('nombre')?.touched)
                             }">
                             La dirección debe tener al menos 5 caracteres.

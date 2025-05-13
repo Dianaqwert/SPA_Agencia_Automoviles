@@ -1,7 +1,6 @@
 import { CommonModule } from '@angular/common';
-import { Component ,NgModule} from '@angular/core';
+import { Component} from '@angular/core';
 import { FormGroup, FormControl, Validators, ValidatorFn, AbstractControl, ValidationErrors, FormsModule, ReactiveFormsModule } from '@angular/forms';
-import { RouterOutlet } from '@angular/router';
 import Swal from 'sweetalert2';
 
 @Component({
@@ -21,6 +20,7 @@ export class ServiciosComponent {
     'Revisión y cambio de batería',
     'Balanceo y alineación',
     'Diagnóstico computarizado'];
+  
   estados=['Aguascalientes','Nuevo León','Sinaloa','CDMX'];
 
   //fecha
