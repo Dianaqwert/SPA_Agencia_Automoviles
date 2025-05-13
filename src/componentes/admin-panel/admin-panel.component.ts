@@ -54,6 +54,8 @@ export class AdminPanelComponent implements OnInit {
     'estado',
     'urgencia'
   ];
+  solicitudes: any[] = [];
+
   
   dataSource = new MatTableDataSource<any>([]);
   selectedRegistro: any = null;
@@ -64,6 +66,8 @@ export class AdminPanelComponent implements OnInit {
     if (currentUser) {
       const user = JSON.parse(currentUser);
       this.userNombreP = user.fullName;
+      this.cargarSolicitudes();
+
     }
   }
 
@@ -182,5 +186,22 @@ export class AdminPanelComponent implements OnInit {
         });
       }
     });
+  }
+
+
+  cargarSolicitudes() {
+    this.solicitudes = JSON.parse(localStorage.getItem('solicitudesFinanciamiento') || '[]');
+  }
+
+
+  cambiarEstado(solicitud: any, nuevoEstado: string) {
+    solicitud.estado = nuevoEstado;
+    let solicitudes = JSON.parse(localStorage.getItem('solicitudesFinanciamiento') || '[]');
+    const index = solicitudes.findIndex((s: any) => s.fecha === solicitud.fecha);
+    if (index !== -1) {
+      solicitudes[index] = solicitud;
+      localStorage.setItem('solicitudesFinanciamiento', JSON.stringify(solicitudes));
+      this.cargarSolicitudes();
+    }
   }
 }

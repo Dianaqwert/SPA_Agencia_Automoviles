@@ -239,3 +239,38 @@
   font-weight: 500;
   font-size: 1.1rem;
 }
+
+
+.resumen-card {
+  background: #FFFFFF;
+  border-radius: 20px;
+  box-shadow: 0 10px 30px rgba(0, 0, 0, 0.1);
+  border: 2px solid #EEEEEE;
+  transition: transform 0.3s ease;
+  margin-bottom: 2rem;
+}
+
+.resumen-card:hover {
+  transform: translateY(-5px);
+}
+
+.resumen-card .table {
+  margin-bottom: 0;
+}
+
+.resumen-card .table th {
+  background-color: #f8f9fa;
+  color: #333;
+  font-weight: 600;
+  border-bottom: 2px solid #dee2e6;
+}
+
+.resumen-card .table td {
+  vertical-align: middle;
+  color: #666;
+}
+
+.resumen-card .table tr:hover {
+  background-color: #f8f9fa;
+}
+
