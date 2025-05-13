@@ -189,13 +189,45 @@ export class AdminPanelComponent implements OnInit {
   }
 
   cambiarEstado(solicitud: any, nuevoEstado: string) {
-    solicitud.estado = nuevoEstado;
-    let solicitudes = JSON.parse(localStorage.getItem('solicitudesFinanciamiento') || '[]');
-    const index = solicitudes.findIndex((s: any) => s.fecha === solicitud.fecha);
-    if (index !== -1) {
-      solicitudes[index] = solicitud;
-      localStorage.setItem('solicitudesFinanciamiento', JSON.stringify(solicitudes));
-      this.cargarSolicitudes();
+    if (nuevoEstado === 'rechazado') {
+      Swal.fire({
+        title: '¿Rechazar solicitud?',
+        text: '¿Estás seguro de que deseas rechazar esta solicitud? Esta acción eliminará el registro.',
+        icon: 'warning',
+        showCancelButton: true,
+        confirmButtonColor: '#FFA739',
+        cancelButtonColor: '#1d1c1c',
+        confirmButtonText: 'Sí, rechazar',
+        cancelButtonText: 'Cancelar'
+      }).then((result) => {
+        if (result.isConfirmed) {
+          this.eliminarSolicitud(solicitud);
+          Swal.fire({
+            title: '¡Solicitud rechazada!',
+            text: 'La solicitud ha sido rechazada y eliminada del sistema',
+            icon: 'success',
+            confirmButtonColor: '#FFA739',
+            timer: 1500,
+            showConfirmButton: false
+          });
+        }
+      });
+    } else {
+      solicitud.estado = nuevoEstado;
+      let solicitudes = JSON.parse(localStorage.getItem('solicitudesFinanciamiento') || '[]');
+      const index = solicitudes.findIndex((s: any) => s.fecha === solicitud.fecha);
+      if (index !== -1) {
+        solicitudes[index] = solicitud;
+        localStorage.setItem('solicitudesFinanciamiento', JSON.stringify(solicitudes));
+        this.cargarSolicitudes();
+      }
     }
+  }
+
+  eliminarSolicitud(solicitud: any) {
+    let solicitudes = JSON.parse(localStorage.getItem('solicitudesFinanciamiento') || '[]');
+    solicitudes = solicitudes.filter((s: any) => s.fecha !== solicitud.fecha);
+    localStorage.setItem('solicitudesFinanciamiento', JSON.stringify(solicitudes));
+    this.cargarSolicitudes();
   }
 }
