@@ -98,7 +98,73 @@
 
 <!-- formulario reactivo -->
 <div class="row g-5">
-  
+
+    <div class="col-md-5 col-lg-4 order-md-last"> 
+        <h4 class="d-flex justify-content-between align-items-center mb-3">
+            <span class="text-primary">Tu solicitud de servicio</span> 
+        </h4> 
+        @if(ultimoRegistro) {
+            <ul class="list-group mb-3">
+                <li class="list-group-item d-flex justify-content-between bg-body-tertiary">
+                    <div class="text-success">
+                        <h6 class="my-0">ID de registro</h6>
+                        <small>{{ ultimoRegistro.id }}</small>
+                    </div>
+                </li>
+                <li class="list-group-item d-flex justify-content-between lh-sm">
+                    <div>
+                        <h6 class="my-0">Nombre completo</h6>
+                        <small class="text-body-secondary">{{ ultimoRegistro.nombre }} {{ ultimoRegistro.apellidos }}</small>
+                    </div>
+                </li>
+                <li class="list-group-item d-flex justify-content-between lh-sm">
+                    <div>
+                        <h6 class="my-0">Email</h6>
+                        <small class="text-body-secondary">{{ ultimoRegistro.email }}</small>
+                    </div>
+                </li>
+                
+                <li class="list-group-item d-flex justify-content-between lh-sm">
+                    <div>
+                        <h6 class="my-0">Ubicación</h6>
+                        <small class="text-body-secondary">
+                            {{ ultimoRegistro.direccion }}, 
+                            {{ ultimoRegistro.estado }}, 
+                            {{ ultimoRegistro.pais }}
+                        </small>
+                    </div>
+                </li>
+                <li class="list-group-item d-flex justify-content-between lh-sm">
+                    <div>
+                        <h6 class="my-0">Fecha de cita</h6>
+                        <small class="text-body-secondary">{{ ultimoRegistro.fechaCita | date:'longDate' }}</small>
+                    </div>
+                </li>
+                <li class="list-group-item d-flex justify-content-between lh-sm">
+                    <div>
+                        <h6 class="my-0">Urgencia</h6>
+                        <small class="text-body-secondary">
+                        {{ ultimoRegistro.urgencia | titlecase }}
+                        </small>
+                    </div>
+                </li>
+                <li class="list-group-item d-flex justify-content-between lh-sm">
+                    <div>
+                        <h6 class="my-0">Tipo de servicio</h6>
+                        <small class="text-body-secondary">
+                        {{ ultimoRegistro.servicios | titlecase }}
+                        </small>
+                    </div>
+                </li>
+            </ul>
+        } @else {
+            <div class="alert alert-info">
+                No hay registros guardados aún
+            </div>
+        }
+    </div>
+    
+    <!--FORMUALRIO REACTIVO-->
     <div class="col-md-7 col-lg-8">
         <h4 class="mb-3">Responsable que solicita el servicio</h4>
         
@@ -313,23 +379,6 @@
                     }
                 </div>
 
-
-                <!--Pais-->
-                <div class="col-md-5">
-                    <label for="country" class="form-label">País</label>
-                    <select class="form-select" id="country" formControlName="pais">
-                        <option value="">Elige...</option>
-                        @for(paises of paises; track paises){
-                            <option [value]="paises">{{paises}}</option>
-                        }
-                    </select>
-                    @if(form.get('pais')?.invalid && form.get('pais')?.touched ||formSubmitted){
-                        <div class="invalid-feedback">
-                            Porfavor selecciona un pais
-                        </div>
-                    }
-                </div>
-
                 <!--estado-->
                 <div class="col-md-4">
                     <label for="state" class="form-label">Estado</label>
@@ -340,9 +389,9 @@
                         }
                     </select>
                     @if(form.get('estado')?.invalid && form.get('estado')?.touched || formSubmitted){
-                        @if(form.get('estado')?.hasError('required')) {
+                        @if(form.get('estado')?.hasError('opcionInvalida')) {
                         <div class="invalid-feedback">
-                            Seleccione un estado válido.
+                            Debe seleccionar otra opción.
                         </div>
                         }
                     }
@@ -395,6 +444,59 @@
                     }
                 </div>
 
+                <!--servicio-->
+                <div class="col-md-5">
+                    <label for="country" class="form-label">Tipo de servicio</label>
+                    <select class="form-select" id="country" formControlName="servicios">
+                        <option value="">Elige...</option>
+                        @for(servicios of servicios; track servicios){
+                            <option [value]="servicios">{{servicios}}</option>
+                        }
+                    </select>
+                    <!-- Cambiar mensaje de servicios -->
+                    @if(form.get('servicios')?.invalid && (form.get('servicios')?.touched || formSubmitted)){
+                        @if(form.get('servicios')?.hasError('opcionInvalida')) {
+                        <div class="invalid-feedback">
+                            Debe seleccionar otra opción
+                        </div>
+                        }
+                    }
+                </div>
+
+            </div>
+
+            <hr class="my-4">
+            <!--urgencia del servicio-->
+            <h4 class="mb-3">Urgencia</h4>
+            <div class="form-check">
+                <div class="form-check">
+                    <input class="form-check-input" type="radio" id="urgencia-alta" 
+                        value="alta" formControlName="urgencia">
+                    <label class="form-check-label" for="urgencia-alta">Mucha</label>
+                </div>
+                
+                <div class="form-check">
+                    <input class="form-check-input" type="radio" id="urgencia-baja" 
+                        value="baja" formControlName="urgencia">
+                    <label class="form-check-label" for="urgencia-baja">Puedo esperar</label>
+                </div>
+  
+                <div class="form-check">
+                    <input class="form-check-input" type="radio" id="urgencia-revision" 
+                        value="revision" formControlName="urgencia">
+                    <label class="form-check-label" for="urgencia-revision">Por revisión</label>
+                </div>
+
+                @if(form.get('urgencia')?.invalid && (form.get('urgencia')?.touched || formSubmitted)){
+                    <div class="invalid-feedback">
+                    @if(form.get('urgencia')?.hasError('required')) {
+                        <div>Debes seleccionar una opción de urgencia</div>
+                    }
+                    @if(form.get('urgencia')?.hasError('urgenciaInvalida')) {
+                        <div>Selección de urgencia no válida</div>
+                    }
+                </div>
+                }
             </div>
 
             <hr class="my-4">
@@ -406,47 +508,63 @@
                 <input type="date" class="form-control" id="fecha-cita" name="fecha-cita" formControlName="fechaCita" 
                 [min]="fechaMin">
 
-                @if(form.get('fechaCita')?.hasError('requiered')){
-                    <div>
-                        Selecciona una fecha
-                    </div>
-                }
-
-                @if(form.get('fechaCita')?.hasError('fechaValida')){
-                    <div>
-                        La fecha no puede ser anterior al dia actual
-                    </div>
+               @if(form.get('fechaCita')?.invalid && (form.get('fechaCita')?.touched || formSubmitted)){
+                    @if(form.get('fechaCita')?.hasError('required')){
+                        <div class="text-danger">Selecciona una fecha</div>
+                    }
+                    @if(form.get('fechaCita')?.hasError('fechaInvalida')){
+                        <div class="text-danger">{{ form.get('fechaCita')?.getError('fechaInvalida').mensaje }}</div>
+                    }
                 }
             </div>
 
+
             <!--radio buton-->
             <div class="form-check">
-                <input type="checkbox" class="form-check-input" id="save-info" formControlName="terminos">
+                
+                <input
+                    type="checkbox"
+                    class="form-check-input"
+                    id="save-info"
+                    formControlName="terminos"
+                    [class.is-invalid]="form.get('terminos')?.invalid && (form.get('terminos')?.touched || formSubmitted)"
+                >
+
                 <label class="form-check-label" for="save-info">
                     Acepto que la empresa guarde mis datos.
                 </label>
 
-                @if(form.get('terminos')?.invalid && form.get('terminos')?.touched||formSubmitted){
+               @if(form.get('terminos')?.invalid && (form.get('terminos')?.touched || formSubmitted)){
                     <div class="invalid-feedback">
-                        Debes aceptar los términos para acontinuar 
+                        Debes aceptar los términos para continuar
                     </div>
                 }
+
+
             </div>
 
             <hr class="my-4">
 
-            <!--boton-->
-            <button class="w-100 btn btn-primary btn-lg" type="submit" [disabled]="!form.valid">
-                @if(form.valid && formSubmitted){
-                    <div class="valid-feedback mt-3">
-                        Todos los campos son validos ,
-                        Formulario listo para enviar 
-                    </div>
-                    
-                }
-                Continuar
+            <!-- Botón de Validar -->
+            <button class="w-100 btn btn-primary btn-lg" 
+                    type="submit" 
+                    [disabled]="form.invalid || !form.dirty">
+            Validar información 
+            </button>
+
+            <!--boton para guardar los datos en el local-->
+            <button 
+                class="w-100 btn btn-success btn-lg mt-3" 
+                type="button" 
+                (click)="guardarInformacion()"
+                [disabled]="!formValidated">
+                Guardar información
             </button>
             
         </form>
+
+
     </div>
+
+    
 </div>

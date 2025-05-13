@@ -1,62 +1,32 @@
-<div class="container py-5">
-  <h1 class="text-center display-4 mb-5 fw-bold">Catálogo de Autos</h1>
-  
-  <div class="row g-4">
-    @for (auto of autos; track auto.modelo) {
-      <div class="col-12 col-md-6 col-lg-4">
-        <div class="card h-100 car-card">
-          <!-- Imagen del auto -->
-          <div class="card-img-wrapper">
-            <img 
-              [src]="'/' + (auto.fuente_img && auto.fuente_img[0])"
-              [alt]="auto.marca + ' ' + auto.modelo"
-              class="card-img-top"
-              (click)="verDetalle(auto.id)"
-            >
-            @if (auto.ofertas) {
-              <div class="badge bg-warning text-dark position-absolute top-0 end-0 m-3">
-                ¡OFERTA!
-              </div>
-            }
-          </div>
-          
-          <!-- Información del auto -->
+<!--texto con imagen-->
+<div class="c1 position-relative overflow-hidden p-3 p-md-5 m-md-3 text-center" style="background-image: url('car.jpg');"> 
+    <div class="col-md-6 p-lg-5 mx-auto my-5"> 
+        <h1 class="display-3 fw-bold">Catálogo </h1> 
+        <h3 class="mb-3" style="color: white; font-weight: bold;">Modelos de ultimo modelo para ti</h3>
+    </div> 
+</div>
+
+@if (array.length > 0) {
+  <div class="row row-cols-1 row-cols-md-3 g-4">
+    @for (auto of array; track auto.id) {
+      <div class="col">
+        <div class="card h-100 shadow-sm">
+          <img src="https://source.unsplash.com/400x300/?car" class="card-img-top" alt="{{ auto.marca }} {{ auto.modelo }}">
           <div class="card-body">
-            <h5 class="card-title fw-bold mb-3">{{ auto.marca }} {{ auto.modelo }}</h5>
-            
-            <div class="specs-grid mb-3">
-              <div class="spec-item">
-                <i class="bi bi-calendar3 me-2"></i>
-                <span class="text-muted">Año:</span>
-                <span class="fw-medium">{{ auto.anio }}</span>
-              </div>
-              <div class="spec-item">
-                <i class="bi bi-speedometer2 me-2"></i>
-                <span class="text-muted">Kilometraje:</span>
-                <span class="fw-medium">{{ auto.kilometraje.toLocaleString() }} km</span>
-              </div>
-              <div class="spec-item">
-                <i class="bi bi-gear me-2"></i>
-                <span class="text-muted">Transmisión:</span>
-                <span class="fw-medium">{{ auto.transmision }}</span>
-              </div>
-              <div class="spec-item">
-                <i class="bi bi-people me-2"></i>
-                <span class="text-muted">Pasajeros:</span>
-                <span class="fw-medium">{{ auto.pasajeros }}</span>
-              </div>
-            </div>
-
-            <div class="price-tag mb-3">
-              {{ formatPrice(auto.precio) }}
-            </div>
-
-            <button class="btn btn-primary w-100" (click)="verDetalle(auto.id)">
-              <i class="bi bi-eye me-2"></i>Ver Detalles
-            </button>
+            <h5 class="card-title">{{ auto.marca }} {{ auto.modelo }}</h5>
+            <p class="card-text">
+              @if (auto.ofertas) {
+                <span class="badge bg-success me-1">Oferta</span>
+              }
+              @if (auto.oportunidades) {
+                <span class="badge bg-warning text-dark">Oportunidad</span>
+              }
+            </p>
           </div>
         </div>
       </div>
     }
   </div>
-</div>
+} @else {
+  <p>No hay autos disponibles.</p>
+}

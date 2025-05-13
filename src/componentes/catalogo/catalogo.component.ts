@@ -2,7 +2,7 @@ import { Component } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { Router, RouterModule } from '@angular/router';
 import { AutoService } from '../../services/auto.service';
-import { Auto } from '../../services/auto';
+
 
 @Component({
   selector: 'app-catalogo',
@@ -12,20 +12,33 @@ import { Auto } from '../../services/auto';
   styleUrls: ['./catalogo.component.css']
 })
 export class CatalogoComponent {
-  autos: Auto[] = [];
 
-  constructor(
-    private autoService: AutoService,
-    private router: Router
-  ) {
-    this.autos = this.autoService.getAutos();
-  }
+ array:any=[];
+ constructor (public servicioApi:AutoService){}
 
-  formatPrice(price: number): string {
-    return new Intl.NumberFormat('es-MX', { style: 'currency', currency: 'MXN' }).format(price);
-  }
+ ngOnInit():void{
+  this.recuperarDatos();
+ }
 
-  verDetalle(id: string) {
-    this.router.navigate(['/detalle', id]);
-  }
+ recuperarDatos():void{
+  this.servicioApi.retornar().subscribe({
+    next:this.successRequest.bind(this),
+    error:(err)=>{console.log(err)}
+  });
+ }
+
+ successRequest(data: any): void {
+  console.log(data);
+  this.array = data.autos; // Aquí tomas solo el array de autos
+  console.log(this.array);
+}
+
+
+
+
+ 
+
+  
+
+  
 }

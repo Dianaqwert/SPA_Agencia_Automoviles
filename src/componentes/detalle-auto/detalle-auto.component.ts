@@ -3,6 +3,7 @@ import { ActivatedRoute } from '@angular/router';
 import { CommonModule } from '@angular/common';
 import { AutoService } from '../../services/auto.service';
 import { Auto } from '../../services/auto';
+import { LogInComponent } from '../log-in/log-in.component';
 
 @Component({
   selector: 'app-detalle-auto',

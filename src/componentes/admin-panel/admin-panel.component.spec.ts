@@ -1,18 +1,18 @@
 import { ComponentFixture, TestBed } from '@angular/core/testing';
 
-import { DetalleAutoComponent } from './detalle-auto.component';
+import { AdminPanelComponent } from './admin-panel.component';
 
-describe('DetalleAutoComponent', () => {
-  let component: DetalleAutoComponent;
-  let fixture: ComponentFixture<DetalleAutoComponent>;
+describe('AdminPanelComponent', () => {
+  let component: AdminPanelComponent;
+  let fixture: ComponentFixture<AdminPanelComponent>;
 
   beforeEach(async () => {
     await TestBed.configureTestingModule({
-      imports: [DetalleAutoComponent]
+      imports: [AdminPanelComponent]
     })
     .compileComponents();
 
-    fixture = TestBed.createComponent(DetalleAutoComponent);
+    fixture = TestBed.createComponent(AdminPanelComponent);
     component = fixture.componentInstance;
     fixture.detectChanges();
   });
