@@ -36,7 +36,6 @@
 /*______Grid areas___________*/
 
 .contenedor{
-   
     padding-top: 60px;
     margin: auto;
     padding: 20px;
@@ -86,7 +85,6 @@
     border-radius: 10px;
     text-align: center;
     min-height: 100px;
-
     display: flexbox;
     flex-direction: column; /* vertical por defecto */
 }

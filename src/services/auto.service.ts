@@ -17,10 +17,9 @@ export class AutoService {
 
   //mostrar datos----------------------------------------------
   constructor(private http: HttpClient) {}
-  urlBase="https://spaautos8.free.beeceptor.com/autos";
+  urlBase="https://spaautos10.free.beeceptor.com/todos";
 
   retornar(){
-    //return this.http.get(this.urlBase).pipe(take(1));
     //guardar
     return this.http.get<Auto[]>(this.urlBase).pipe(
       take(1),
@@ -35,9 +34,8 @@ export class AutoService {
     );
   }
   //-------------------------MODELO-----------------------------------
-  // AutoService
-
- // Búsqueda por modelo
+  // Búsqueda por modelo
+  //Observable -> recibir datos de la apide forma asincrona 
   buscarPorModelo(modelo: string): Observable<Auto[]> {
     return this.http.get<{ autos: Auto[] }>(this.urlBase).pipe(
       take(1),
@@ -49,8 +47,5 @@ export class AutoService {
       )
     );
   }
-
-  
-
 
 }

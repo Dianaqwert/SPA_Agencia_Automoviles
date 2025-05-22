@@ -12,7 +12,6 @@ import Swal from 'sweetalert2';
 })
 export class ServiciosComponent {
 
-  
   //lista despegable
   servicios=['Mantenimiento preventivo',
     'Reparaciones mecánica',
@@ -346,9 +345,5 @@ export class ServiciosComponent {
     const datos = localStorage.getItem('registroFormulario');
     return datos ? JSON.parse(datos) : [];
   }
-
-
-
-
 
 }
